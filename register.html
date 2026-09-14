@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-box">
+
+        <div class="auth-logo">
+            KP PANEL
+        </div>
+
+        <div class="auth-subtitle">
+            CREATE ACCOUNT
+        </div>
+
+        <p class="auth-description">
+            Create your KP Panel account.
+        </p>
+
+
+        <form method="POST">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+            <label>
+                Confirm Password
+            </label>
+
+            <input
+                type="password"
+                name="confirm"
+                placeholder="Confirm password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="main-button"
+            >
+                REGISTER NOW
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            Already Member?
+
+            <a href="/login">
+                Login Now
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
