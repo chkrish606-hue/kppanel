@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="buy-container">
+
+    <a href="/" class="back-button">
+        ← Back to Shop
+    </a>
+
+
+    <div class="buy-card">
+
+        <div class="product-icon">
+            KP
+        </div>
+
+
+        <div class="buy-info">
+
+            <div class="duration-badge">
+                {{ product.duration }}
+            </div>
+
+            <h1>
+                {{ product.name }}
+            </h1>
+
+            <p>
+                Available Stock:
+                <strong>{{ product.stock }}</strong>
+            </p>
+
+            <div class="unit-price">
+                ₹{{ "%.0f"|format(product.price) }}
+                <span>per key</span>
+            </div>
+
+        </div>
+
+
+        <form method="POST">
+
+            <div class="quantity-title">
+                Select Quantity
+            </div>
+
+
+            <div class="quantity-box">
+
+                <button
+                    type="button"
+                    onclick="changeQuantity(-1)"
+                >
+                    −
+                </button>
+
+
+                <input
+                    id="quantity"
+                    name="qty"
+                    value="{{ qty }}"
+                    readonly
+                >
+
+
+                <button
+                    type="button"
+                    onclick="changeQuantity(1)"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <div class="total-box">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <strong id="total">
+                    ₹{{ "%.0f"|format(product.price) }}
+                </strong>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="main-button buy-button"
+            >
+                🛒 BUY NOW
+            </button>
+
+        </form>
+
+
+        {% if message %}
+
+        <div class="purchase-message">
+            {{ message }}
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<script>
+
+let quantity = {{ qty }};
+let price = {{ product.price }};
+let stock = {{ product.stock }};
+
+
+function changeQuantity(amount) {
+
+    quantity = quantity + amount;
+
+    if (quantity < 1) {
+        quantity = 1;
+    }
+
+    if (quantity > stock) {
+        quantity = stock;
+    }
+
+    document.getElementById("quantity").value =
+        quantity;
+
+    document.getElementById("total").innerText =
+        "₹" + (quantity * price).toFixed(0);
+
+}
+
+</script>
+
+{% endblock %}
