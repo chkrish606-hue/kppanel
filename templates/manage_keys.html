@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Keys - KP Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="container">
+
+<div class="page-title">
+    <h1>Manage Keys</h1>
+    <p>{{ product["name"] }}</p>
+</div>
+
+<div class="card admin-section">
+
+<h2>Add Keys</h2>
+
+<p style="color:#94a3b8;margin-bottom:15px;">
+    Enter one key per line.
+</p>
+
+<form method="POST">
+
+<textarea
+    name="keys"
+    placeholder="KEY-001&#10;KEY-002&#10;KEY-003"
+    required
+></textarea>
+
+<br><br>
+
+<button class="btn btn-success" type="submit">
+    Add Keys
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Inventory</h2>
+
+<br>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Key</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for key in keys %}
+
+<tr>
+
+<td>{{ key["id"] }}</td>
+
+<td>
+    <span class="order-key">
+        {{ key["key_value"] }}
+    </span>
+</td>
+
+<td>
+    {% if key["is_sold"] %}
+        SOLD
+    {% else %}
+        AVAILABLE
+    {% endif %}
+</td>
+
+<td>
+
+{% if not key["is_sold"] %}
+
+<form
+    method="POST"
+    action="{{ url_for(
+        'delete_key',
+        key_id=key['id']
+    ) }}"
+>
+
+<button class="btn btn-danger" type="submit">
+    Delete
+</button>
+
+</form>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
