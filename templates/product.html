@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product["name"] }} - KP Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="container nav-inner">
+
+        <div class="logo">
+            KP <span>PANEL</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">Shop</a>
+            <a href="{{ url_for('orders') }}">My Orders</a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="page">
+
+    <div class="container">
+
+        <div class="card product-detail">
+
+            <span class="category">
+                {{ product["category"] }}
+            </span>
+
+            <h1>{{ product["name"] }}</h1>
+
+            <p style="margin-top:12px;color:#94a3b8;">
+                {{ product["description"] }}
+            </p>
+
+            {% if product["video_url"] %}
+
+            <div class="video-box">
+                <iframe
+                    src="{{ product['video_url'] }}"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            {% endif %}
+
+            {% if product["update_url"] %}
+
+            <div class="action-row">
+
+                <a
+                    href="{{ product['update_url'] }}"
+                    target="_blank"
+                    class="btn btn-secondary"
+                >
+                    📢 Join Update Channel
+                </a>
+
+            </div>
+
+            {% endif %}
+
+            <div class="price">
+                ₹{{ "%.2f"|format(price) }}
+            </div>
+
+            <div class="stock">
+                Available Stock: {{ stock }}
+            </div>
+
+            {% if stock > 0 %}
+
+            <form
+                method="POST"
+                action="{{ url_for(
+                    'buy_product',
+                    product_id=product['id']
+                ) }}"
+            >
+
+                <button class="btn" type="submit">
+                    🛒 Purchase Key
+                </button>
+
+            </form>
+
+            {% else %}
+
+            <button class="btn btn-danger" disabled>
+                Out of Stock
+            </button>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
