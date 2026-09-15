@@ -1013,3 +1013,2478 @@ function logout(){
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KP PANEL SHOP</title>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#02060d;
+    color:white;
+}
+
+body{
+    padding-bottom:90px;
+}
+
+.app{
+    width:100%;
+    max-width:720px;
+    margin:auto;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 50% 0%,#0b2136 0%,#040b15 35%,#02060d 80%);
+}
+
+/* TOP BAR */
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+
+    display:flex;
+    gap:12px;
+
+    padding:15px 20px;
+
+    background:rgba(3,9,17,.95);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid #0b3949;
+}
+
+.top-btn{
+    flex:1;
+
+    height:58px;
+
+    border-radius:25px;
+
+    border:1px solid #075c68;
+
+    background:#07151e;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.balance{
+    color:#13e1c3;
+}
+
+.topup{
+    background:linear-gradient(
+        100deg,
+        #0fc8ec,
+        #a873f4
+    );
+
+    border:0;
+}
+
+/* CONTENT */
+
+.content{
+    padding:30px 27px;
+}
+
+.page-title{
+    margin:0 0 15px;
+
+    font-size:35px;
+
+    font-weight:900;
+}
+
+.breadcrumb{
+    color:#75849e;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    margin-bottom:35px;
+}
+
+.breadcrumb span{
+    color:#12d5ee;
+}
+
+/* PRODUCT */
+
+.product{
+    overflow:hidden;
+
+    margin-bottom:28px;
+
+    border:1px solid #1b3041;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #071321,
+        #060d19
+    );
+
+    box-shadow:
+    0 0 25px rgba(0,180,255,.08);
+}
+
+.product-image{
+    width:100%;
+
+    aspect-ratio:1.8;
+
+    object-fit:cover;
+
+    display:block;
+
+    background:#07111d;
+}
+
+.product-body{
+    padding:20px;
+}
+
+.online{
+    position:absolute;
+
+    top:16px;
+    right:16px;
+
+    padding:9px 16px;
+
+    border-radius:22px;
+
+    background:#10ae80;
+
+    color:#c8ffed;
+
+    font-weight:900;
+}
+
+.image-area{
+    position:relative;
+}
+
+.product-title{
+    text-align:center;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    line-height:1.4;
+
+    margin-bottom:15px;
+}
+
+.chips{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-bottom:15px;
+}
+
+.chip{
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    border:1px solid #07576c;
+
+    background:#061e2a;
+
+    color:#30b9e8;
+
+    font-weight:800;
+
+    font-size:14px;
+}
+
+.info-buttons{
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:12px;
+}
+
+.info-btn{
+    flex:1;
+
+    min-height:62px;
+
+    border-radius:15px;
+
+    background:#181326;
+
+    border:1px solid #68275e;
+
+    color:#ff77bc;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.info-btn.blue{
+    background:#071b28;
+
+    border-color:#0a5c75;
+
+    color:#31b9ed;
+}
+
+/* PURCHASE */
+
+.purchase-btn{
+    width:100%;
+
+    height:65px;
+
+    border:0;
+
+    border-radius:17px;
+
+    background:
+    linear-gradient(
+        100deg,
+        #0cbbe1,
+        #17c79d
+    );
+
+    color:white;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+}
+
+/* PLANS */
+
+.plans{
+    display:none;
+
+    margin-top:14px;
+
+    padding:12px;
+
+    border-radius:20px;
+
+    border:1px solid #07566c;
+
+    background:#030a13;
+}
+
+.plans.open{
+    display:block;
+}
+
+.plans-title{
+    padding:8px;
+
+    border-bottom:1px solid #17313e;
+
+    color:#aebbd1;
+
+    font-size:18px;
+
+    font-weight:900;
+}
+
+.plan{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:12px 3px;
+
+    border-bottom:1px solid #12303b;
+}
+
+.plan-info{
+    flex:1;
+}
+
+.plan-name{
+    font-size:18px;
+
+    font-weight:900;
+}
+
+.plan-price{
+    color:#19dfc2;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    margin-top:3px;
+}
+
+.qty{
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+}
+
+.qty button{
+    width:38px;
+    height:38px;
+
+    border-radius:9px;
+
+    border:1px solid #087485;
+
+    background:#06212a;
+
+    color:#0de6f5;
+
+    font-size:22px;
+
+    font-weight:900;
+}
+
+.qty-number{
+    min-width:22px;
+
+    text-align:center;
+
+    font-weight:900;
+}
+
+.get-btn{
+    height:44px;
+
+    padding:0 17px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:#ed3e78;
+
+    color:white;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+
+    bottom:0;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(720px,100%);
+
+    height:88px;
+
+    z-index:100;
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    background:rgba(6,8,21,.97);
+
+    border-top:1px solid #19324b;
+}
+
+.nav-btn{
+    border:0;
+
+    background:transparent;
+
+    color:#8290a8;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    cursor:pointer;
+}
+
+.nav-icon{
+    font-size:25px;
+}
+
+.nav-btn.active{
+    color:#12d7ed;
+}
+
+/* PAGES */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* ADMIN */
+
+.admin{
+    padding:25px 22px;
+}
+
+.admin h2{
+    font-size:30px;
+
+    margin:0 0 20px;
+}
+
+.admin-card{
+    padding:18px;
+
+    margin-bottom:18px;
+
+    border-radius:20px;
+
+    border:1px solid #19384d;
+
+    background:#07111d;
+}
+
+.admin-card h3{
+    margin-top:0;
+}
+
+.input-group{
+    margin-bottom:14px;
+}
+
+.input-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#aebdd5;
+
+    font-weight:900;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+
+    border:1px solid #294256;
+
+    border-radius:12px;
+
+    background:#020810;
+
+    color:white;
+
+    padding:13px;
+
+    outline:none;
+}
+
+.input-group textarea{
+    min-height:80px;
+
+    resize:vertical;
+}
+
+.admin-main-btn{
+    padding:13px 18px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        100deg,
+        #0cbbe1,
+        #17c79d
+    );
+
+    color:white;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.admin-product{
+    padding:13px;
+
+    margin-top:12px;
+
+    border-radius:15px;
+
+    border:1px solid #1b374c;
+
+    background:#050c16;
+}
+
+.admin-product-head{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.admin-product img{
+    width:70px;
+
+    height:50px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+}
+
+.admin-product-info{
+    flex:1;
+}
+
+.delete-btn{
+    border:0;
+
+    border-radius:9px;
+
+    padding:9px;
+
+    background:#481328;
+
+    color:#ff9bb9;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.plan-editor{
+    margin-top:14px;
+
+    padding-top:12px;
+
+    border-top:1px solid #183448;
+}
+
+.plan-row{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    color:#cbd7e8;
+}
+
+.add-plan{
+    display:flex;
+
+    gap:7px;
+
+    margin-top:10px;
+}
+
+.add-plan input{
+    min-width:0;
+
+    flex:1;
+
+    padding:10px;
+
+    border-radius:9px;
+
+    border:1px solid #284153;
+
+    background:#020811;
+
+    color:white;
+}
+
+.add-plan button{
+    border:0;
+
+    border-radius:9px;
+
+    background:#123d4d;
+
+    color:#2ce0f2;
+
+    font-weight:900;
+
+    padding:10px;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:200;
+
+    background:rgba(0,0,0,.75);
+
+    align-items:flex-end;
+
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(720px,100%);
+
+    padding:22px;
+
+    border-radius:25px 25px 0 0;
+
+    background:#07111d;
+
+    border:1px solid #1c3d52;
+}
+
+.modal-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.close{
+    width:42px;
+    height:42px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#172337;
+
+    color:white;
+
+    font-size:23px;
+}
+
+.modal-balance{
+    text-align:center;
+
+    font-size:34px;
+
+    color:#16dfc2;
+
+    font-weight:900;
+
+    margin:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:430px){
+
+    .topbar{
+        padding:13px 12px;
+    }
+
+    .top-btn{
+        font-size:15px;
+    }
+
+    .content{
+        padding:27px 20px;
+    }
+
+    .page-title{
+        font-size:31px;
+    }
+
+    .product-body{
+        padding:15px;
+    }
+
+    .product-title{
+        font-size:18px;
+    }
+
+    .chip{
+        font-size:12px;
+    }
+
+    .plan-name{
+        font-size:16px;
+    }
+
+    .get-btn{
+        padding:0 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- TOP BAR -->
+
+<header class="topbar">
+
+<button class="top-btn" onclick="showPage('store')">
+🔷 Store
+</button>
+
+<button class="top-btn balance">
+💳 ₹<span id="balance">35.00</span>
+</button>
+
+<button class="top-btn topup" onclick="openTopup()">
+⚡ TOP UP
+</button>
+
+</header>
+
+
+<!-- ================= STORE ================= -->
+
+<section id="store" class="page active">
+
+<div class="content">
+
+<h1 class="page-title">
+Browse Products
+</h1>
+
+<div class="breadcrumb">
+&gt;&gt; MARKETPLACE /
+<span> USER STOCK</span>
+</div>
+
+<div id="products"></div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MY KEYS ================= -->
+
+<section id="keys" class="page">
+
+<div class="content">
+
+<h1 class="page-title">
+🔑 My Keys
+</h1>
+
+<div id="keysList">
+No purchased keys yet.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= DEPOSIT ================= -->
+
+<section id="deposit" class="page">
+
+<div class="content">
+
+<h1 class="page-title">
+💰 Deposit
+</h1>
+
+<div class="admin-card">
+
+<p>
+Current balance:
+</p>
+
+<h2 style="color:#15dfc2">
+₹<span id="depositBalance">35.00</span>
+</h2>
+
+<button
+class="admin-main-btn"
+onclick="openTopup()">
+
+⚡ ADD BALANCE
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= HISTORY ================= -->
+
+<section id="history" class="page">
+
+<div class="content">
+
+<h1 class="page-title">
+📜 History
+</h1>
+
+<div id="historyList">
+No transactions yet.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= API ================= -->
+
+<section id="api" class="page">
+
+<div class="content">
+
+<h1 class="page-title">
+🔌 API
+</h1>
+
+<div class="admin-card">
+
+<p>
+API section.
+</p>
+
+<p style="color:#8190aa">
+Connect your real backend API here.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section id="profile" class="page">
+
+<div class="content">
+
+<h1 class="page-title">
+👤 Profile
+</h1>
+
+<div class="admin-card">
+
+<h3>
+KP PANEL SHOP
+</h3>
+
+<p style="color:#8c9bb2">
+Store account dashboard
+</p>
+
+<button
+class="admin-main-btn"
+onclick="openAdmin()">
+
+⚙️ ADMIN PANEL
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ADMIN ================= -->
+
+<section id="admin" class="page">
+
+<div class="admin">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2>
+⚙️ Admin Panel
+</h2>
+
+<button
+class="close"
+onclick="showPage('profile')">
+×
+</button>
+
+</div>
+
+
+<!-- ADD PRODUCT -->
+
+<div class="admin-card">
+
+<h3>
+➕ Add Product
+</h3>
+
+<div class="input-group">
+
+<label>
+Product Name
+</label>
+
+<input
+id="productName"
+placeholder="Enter product name">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Description
+</label>
+
+<textarea
+id="productDescription"
+placeholder="Enter description"></textarea>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Product Image URL
+</label>
+
+<input
+id="productImage"
+placeholder="https://example.com/image.jpg">
+
+</div>
+
+
+<button
+class="admin-main-btn"
+onclick="addProduct()">
+
+ADD PRODUCT
+
+</button>
+
+</div>
+
+
+<!-- ADMIN PRODUCTS -->
+
+<div class="admin-card">
+
+<h3>
+📦 Products & Plans
+</h3>
+
+<div id="adminProducts"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+<button
+class="nav-btn active"
+id="nav-store"
+onclick="showPage('store')">
+
+<span class="nav-icon">🏪</span>
+Store
+
+</button>
+
+
+<button
+class="nav-btn"
+id="nav-keys"
+onclick="showPage('keys')">
+
+<span class="nav-icon">🔑</span>
+My Keys
+
+</button>
+
+
+<button
+class="nav-btn"
+id="nav-deposit"
+onclick="showPage('deposit')">
+
+<span class="nav-icon">🟢</span>
+Deposit
+
+</button>
+
+
+<button
+class="nav-btn"
+id="nav-history"
+onclick="showPage('history')">
+
+<span class="nav-icon">📱</span>
+History
+
+</button>
+
+
+<button
+class="nav-btn"
+id="nav-api"
+onclick="showPage('api')">
+
+<span class="nav-icon">⬆️</span>
+API
+
+</button>
+
+
+<button
+class="nav-btn"
+id="nav-profile"
+onclick="showPage('profile')">
+
+<span class="nav-icon">👤</span>
+Profile
+
+</button>
+
+</nav>
+
+
+<!-- ================= TOPUP MODAL ================= -->
+
+<div
+id="topupModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2>
+⚡ TOP UP
+</h2>
+
+<button
+class="close"
+onclick="closeTopup()">
+
+×
+
+</button>
+
+</div>
+
+
+<div class="modal-balance">
+
+₹<span id="modalBalance">
+35.00
+</span>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Amount ₹
+</label>
+
+<input
+id="topupAmount"
+type="number"
+min="1"
+value="100">
+
+</div>
+
+
+<button
+class="admin-main-btn"
+style="width:100%"
+onclick="addBalance()">
+
+ADD BALANCE
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================
+   STORAGE
+========================================= */
+
+const PRODUCT_KEY = "kp_products";
+
+const BALANCE_KEY = "kp_balance";
+
+const KEYS_KEY = "kp_keys";
+
+const HISTORY_KEY = "kp_history";
+
+
+/* =========================================
+   DEFAULT PRODUCTS
+========================================= */
+
+const defaultProducts = [
+
+{
+    id:"product_1",
+
+    name:"DIGITAL PRODUCT",
+
+    description:"Premium digital product",
+
+    image:"",
+
+    plans:[
+        {
+            name:"1 Hours",
+            price:8
+        },
+
+        {
+            name:"2 Hours",
+            price:16
+        },
+
+        {
+            name:"3 Hours",
+            price:24
+        },
+
+        {
+            name:"4 Hours",
+            price:32
+        },
+
+        {
+            name:"5 Hours",
+            price:40
+        }
+    ]
+}
+
+];
+
+
+/* =========================================
+   LOAD DATA
+========================================= */
+
+let products =
+loadData(PRODUCT_KEY,defaultProducts);
+
+let balance =
+Number(
+localStorage.getItem(BALANCE_KEY) || 35
+);
+
+let keys =
+loadData(KEYS_KEY,[]);
+
+let history =
+loadData(HISTORY_KEY,[]);
+
+
+/* =========================================
+   LOAD FUNCTION
+========================================= */
+
+function loadData(key,fallback){
+
+    try{
+
+        const data =
+        localStorage.getItem(key);
+
+        return data
+        ? JSON.parse(data)
+        : fallback;
+
+    }catch(error){
+
+        return fallback;
+
+    }
+
+}
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+function saveData(){
+
+    localStorage.setItem(
+        PRODUCT_KEY,
+        JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+        BALANCE_KEY,
+        balance
+    );
+
+    localStorage.setItem(
+        KEYS_KEY,
+        JSON.stringify(keys)
+    );
+
+    localStorage.setItem(
+        HISTORY_KEY,
+        JSON.stringify(history)
+    );
+
+}
+
+
+/* =========================================
+   PAGE NAVIGATION
+========================================= */
+
+function showPage(page){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(x){
+
+        x.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(page)
+    .classList.add("active");
+
+
+    document
+    .querySelectorAll(".nav-btn")
+    .forEach(function(x){
+
+        x.classList.remove("active");
+
+    });
+
+
+    const nav =
+    document.getElementById("nav-"+page);
+
+
+    if(nav){
+
+        nav.classList.add("active");
+
+    }
+
+
+    window.scrollTo(0,0);
+
+
+    render();
+
+}
+
+
+/* =========================================
+   RENDER STORE
+========================================= */
+
+function render(){
+
+    updateBalance();
+
+    renderProducts();
+
+    renderAdmin();
+
+    renderKeys();
+
+    renderHistory();
+
+}
+
+
+/* =========================================
+   BALANCE
+========================================= */
+
+function updateBalance(){
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+    balance.toFixed(2);
+
+
+    document.getElementById(
+        "depositBalance"
+    ).textContent =
+    balance.toFixed(2);
+
+
+    document.getElementById(
+        "modalBalance"
+    ).textContent =
+    balance.toFixed(2);
+
+}
+
+
+/* =========================================
+   STORE PRODUCTS
+========================================= */
+
+function renderProducts(){
+
+    const container =
+    document.getElementById("products");
+
+
+    if(!container) return;
+
+
+    container.innerHTML="";
+
+
+    products.forEach(function(product){
+
+        const article =
+        document.createElement("article");
+
+
+        article.className="product";
+
+
+        const image =
+        product.image ||
+        "https://via.placeholder.com/900x500/071321/13cbea?text=KP+PANEL+SHOP";
+
+
+        article.innerHTML=`
+
+        <div class="image-area">
+
+            <img
+            class="product-image"
+            src="${image}"
+            alt="Product">
+
+            <div class="online">
+                ● ONLINE
+            </div>
+
+        </div>
+
+
+        <div class="product-body">
+
+            <div class="product-title">
+
+                ✨🔥 ${escapeHTML(product.name)} ❤️✨
+
+            </div>
+
+
+            <div class="chips">
+
+                <div class="chip">
+                    ⚡ 🎯 Feature 1
+                </div>
+
+                <div class="chip">
+                    ⚡ 🎯 Feature 2
+                </div>
+
+                <div class="chip">
+                    ⚡ 📍 Feature 3
+                </div>
+
+                <div class="chip">
+                    ⚡ 📱 Device Support
+                </div>
+
+            </div>
+
+
+            <div class="info-buttons">
+
+                <button
+                class="info-btn"
+                onclick="showMessage('Update information')">
+
+                    ⭐ UPDATE FILE ⭐
+
+                </button>
+
+
+                <button
+                class="info-btn blue"
+                onclick="showMessage('Setup information')">
+
+                    ⭐ SET UP VIDEO ⭐
+
+                </button>
+
+            </div>
+
+
+            <button
+            class="purchase-btn"
+            onclick="togglePlans('${product.id}')">
+
+                PURCHASE KEY 🔑
+
+            </button>
+
+
+            <div
+            class="plans"
+            id="plans-${product.id}">
+
+                <div class="plans-title">
+
+                    ◇ CHOOSE PLAN & QUANTITY
+
+                </div>
+
+                ${
+                    product.plans.length
+                    ?
+                    product.plans
+                    .map(function(plan,index){
+
+                        return createPlanHTML(
+                            product.id,
+                            plan,
+                            index
+                        );
+
+                    }).join("")
+                    :
+                    `<div style="
+                    padding:20px;
+                    text-align:center;
+                    color:#7e8ca5">
+
+                        Admin has not added any plans.
+
+                    </div>`
+                }
+
+            </div>
+
+        </div>
+
+        `;
+
+
+        container.appendChild(article);
+
+    });
+
+}
+
+
+/* =========================================
+   PLAN HTML
+========================================= */
+
+function createPlanHTML(
+    productId,
+    plan,
+    index
+){
+
+    return `
+
+    <div class="plan">
+
+        <div class="plan-info">
+
+            <div class="plan-name">
+                ${escapeHTML(plan.name)}
+            </div>
+
+            <div class="plan-price">
+                ₹${Number(plan.price).toFixed(2)}
+            </div>
+
+        </div>
+
+
+        <div class="qty">
+
+            <button
+            onclick="changeQty(this,-1)">
+                −
+            </button>
+
+            <span class="qty-number">
+                1
+            </span>
+
+            <button
+            onclick="changeQty(this,1)">
+                +
+            </button>
+
+        </div>
+
+
+        <button
+        class="get-btn"
+        onclick="
+        buyPlan(
+            '${productId}',
+            ${index},
+            this
+        )">
+
+            GET
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+
+/* =========================================
+   OPEN PLANS
+========================================= */
+
+function togglePlans(id){
+
+    const plans =
+    document.getElementById(
+        "plans-"+id
+    );
+
+
+    if(plans){
+
+        plans.classList.toggle("open");
+
+    }
+
+}
+
+
+/* =========================================
+   QUANTITY
+========================================= */
+
+function changeQty(
+    button,
+    amount
+){
+
+    const number =
+    button.parentElement
+    .querySelector(".qty-number");
+
+
+    let value =
+    Number(number.textContent);
+
+
+    value += amount;
+
+
+    if(value < 1){
+
+        value=1;
+
+    }
+
+
+    number.textContent=value;
+
+}
+
+
+/* =========================================
+   BUY PLAN
+========================================= */
+
+function buyPlan(
+    productId,
+    planIndex,
+    button
+){
+
+    const product =
+    products.find(function(p){
+
+        return p.id===productId;
+
+    });
+
+
+    if(!product) return;
+
+
+    const plan =
+    product.plans[planIndex];
+
+
+    if(!plan) return;
+
+
+    const quantity =
+    Number(
+        button
+        .parentElement
+        .querySelector(".qty-number")
+        .textContent
+    );
+
+
+    const total =
+    Number(plan.price) * quantity;
+
+
+    if(balance < total){
+
+        alert(
+            "Insufficient balance.\n\nPlease use TOP UP first."
+        );
+
+        openTopup();
+
+        return;
+
+    }
+
+
+    balance -= total;
+
+
+    for(
+        let i=0;
+        i<quantity;
+        i++
+    ){
+
+        keys.unshift({
+
+            id:
+            "KP-"+
+
+            Math.random()
+            .toString(36)
+            .substring(2,9)
+            .toUpperCase(),
+
+            product:product.name,
+
+            plan:plan.name,
+
+            date:
+            new Date()
+            .toLocaleString()
+
+        });
+
+    }
+
+
+    history.unshift({
+
+        type:"Purchase",
+
+        product:product.name,
+
+        plan:plan.name,
+
+        amount:total,
+
+        date:
+        new Date()
+        .toLocaleString()
+
+    });
+
+
+    saveData();
+
+    render();
+
+
+    alert(
+        "Purchase successful!\n\n"+
+        "₹"+total.toFixed(2)+
+        " deducted."
+    );
+
+}
+
+
+/* =========================================
+   ADMIN
+========================================= */
+
+function openAdmin(){
+
+    showPage("admin");
+
+}
+
+
+/* =========================================
+   ADD PRODUCT
+========================================= */
+
+function addProduct(){
+
+    const name =
+    document
+    .getElementById("productName")
+    .value
+    .trim();
+
+
+    const description =
+    document
+    .getElementById("productDescription")
+    .value
+    .trim();
+
+
+    const image =
+    document
+    .getElementById("productImage")
+    .value
+    .trim();
+
+
+    if(!name){
+
+        alert(
+            "Product name required."
+        );
+
+        return;
+
+    }
+
+
+    products.push({
+
+        id:
+        "product_"+Date.now(),
+
+        name:name,
+
+        description:
+        description,
+
+        image:image,
+
+        plans:[]
+
+    });
+
+
+    saveData();
+
+
+    document
+    .getElementById("productName")
+    .value="";
+
+
+    document
+    .getElementById("productDescription")
+    .value="";
+
+
+    document
+    .getElementById("productImage")
+    .value="";
+
+
+    render();
+
+
+    alert(
+        "Product added successfully!"
+    );
+
+}
+
+
+/* =========================================
+   ADMIN PRODUCT LIST
+========================================= */
+
+function renderAdmin(){
+
+    const container =
+    document.getElementById(
+        "adminProducts"
+    );
+
+
+    if(!container) return;
+
+
+    container.innerHTML="";
+
+
+    products.forEach(function(
+        product,
+        productIndex
+    ){
+
+        const div =
+        document.createElement("div");
+
+
+        div.className=
+        "admin-product";
+
+
+        div.innerHTML=`
+
+        <div class="admin-product-head">
+
+            <img
+            src="${
+                product.image ||
+                'https://via.placeholder.com/150'
+            }">
+
+            <div class="admin-product-info">
+
+                <b>
+                    ${escapeHTML(product.name)}
+                </b>
+
+                <small style="
+                display:block;
+                color:#8190a8;
+                margin-top:5px">
+
+                    ${product.plans.length}
+                    plans
+
+                </small>
+
+            </div>
+
+
+            <button
+            class="delete-btn"
+            onclick="
+            deleteProduct(${productIndex})
+            ">
+
+                DELETE
+
+            </button>
+
+        </div>
+
+
+        <div class="plan-editor">
+
+            <b>
+                Plans
+            </b>
+
+            <div
+            id="admin-plans-${product.id}">
+            </div>
+
+
+            <div class="add-plan">
+
+                <input
+                id="plan-name-${product.id}"
+                placeholder="Plan e.g. 6 Hours">
+
+
+                <input
+                id="plan-price-${product.id}"
+                type="number"
+                min="0"
+                placeholder="₹ Price">
+
+
+                <button
+                onclick="
+                addPlan('${product.id}')
+                ">
+
+                    ADD
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+
+        container.appendChild(div);
+
+
+        const planBox =
+        document.getElementById(
+            "admin-plans-"+product.id
+        );
+
+
+        product.plans.forEach(
+            function(plan,index){
+
+                const row =
+                document.createElement("div");
+
+
+                row.className=
+                "plan-row";
+
+
+                row.innerHTML=`
+
+                <span>
+
+                    ${escapeHTML(plan.name)}
+                    —
+                    ₹${Number(plan.price).toFixed(2)}
+
+                </span>
+
+
+                <button
+                class="delete-btn"
+                onclick="
+                deletePlan(
+                    '${product.id}',
+                    ${index}
+                )
+                ">
+
+                    ×
+
+                </button>
+
+                `;
+
+
+                planBox.appendChild(row);
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   ADD PLAN
+========================================= */
+
+function addPlan(productId){
+
+    const name =
+    document
+    .getElementById(
+        "plan-name-"+productId
+    )
+    .value
+    .trim();
+
+
+    const price =
+    Number(
+        document
+        .getElementById(
+            "plan-price-"+productId
+        )
+        .value
+    );
+
+
+    if(!name){
+
+        alert(
+            "Plan name required."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !Number.isFinite(price) ||
+        price < 0
+    ){
+
+        alert(
+            "Enter a valid price."
+        );
+
+        return;
+
+    }
+
+
+    const product =
+    products.find(function(p){
+
+        return p.id===productId;
+
+    });
+
+
+    if(!product) return;
+
+
+    product.plans.push({
+
+        name:name,
+
+        price:price
+
+    });
+
+
+    saveData();
+
+    render();
+
+
+    alert(
+        "Plan added!\n\n"+
+        "It will now appear in Store."
+    );
+
+}
+
+
+/* =========================================
+   DELETE PLAN
+========================================= */
+
+function deletePlan(
+    productId,
+    planIndex
+){
+
+    const product =
+    products.find(function(p){
+
+        return p.id===productId;
+
+    });
+
+
+    if(!product) return;
+
+
+    product.plans.splice(
+        planIndex,
+        1
+    );
+
+
+    saveData();
+
+    render();
+
+}
+
+
+/* =========================================
+   DELETE PRODUCT
+========================================= */
+
+function deleteProduct(index){
+
+    if(
+        !confirm(
+            "Delete this product?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    products.splice(
+        index,
+        1
+    );
+
+
+    saveData();
+
+    render();
+
+}
+
+
+/* =========================================
+   TOP UP
+========================================= */
+
+function openTopup(){
+
+    document
+    .getElementById(
+        "topupModal"
+    )
+    .classList.add("show");
+
+
+    updateBalance();
+
+}
+
+
+function closeTopup(){
+
+    document
+    .getElementById(
+        "topupModal"
+    )
+    .classList.remove("show");
+
+}
+
+
+function addBalance(){
+
+    const amount =
+    Number(
+        document
+        .getElementById(
+            "topupAmount"
+        )
+        .value
+    );
+
+
+    if(
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ){
+
+        alert(
+            "Enter a valid amount."
+        );
+
+        return;
+
+    }
+
+
+    balance += amount;
+
+
+    history.unshift({
+
+        type:"Top Up",
+
+        amount:amount,
+
+        date:
+        new Date()
+        .toLocaleString()
+
+    });
+
+
+    saveData();
+
+    render();
+
+    closeTopup();
+
+
+    alert(
+        "₹"+amount.toFixed(2)+
+        " added successfully!"
+    );
+
+}
+
+
+/* =========================================
+   MY KEYS
+========================================= */
+
+function renderKeys(){
+
+    const box =
+    document.getElementById(
+        "keysList"
+    );
+
+
+    if(!box) return;
+
+
+    if(!keys.length){
+
+        box.innerHTML=`
+        <div class="admin-card"
+        style="color:#8190a8">
+
+            No purchased keys yet.
+
+        </div>`;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    keys.map(function(key){
+
+        return `
+
+        <div class="admin-card">
+
+            <b>
+                ${escapeHTML(key.product)}
+            </b>
+
+            <br>
+
+            <span style="
+            color:#16ddc1">
+
+                ${escapeHTML(key.plan)}
+
+            </span>
+
+            <br>
+
+            <small style="
+            color:#8190a8">
+
+                ${escapeHTML(key.id)}
+                •
+                ${escapeHTML(key.date)}
+
+            </small>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================================
+   HISTORY
+========================================= */
+
+function renderHistory(){
+
+    const box =
+    document.getElementById(
+        "historyList"
+    );
+
+
+    if(!box) return;
+
+
+    if(!history.length){
+
+        box.innerHTML=`
+        <div class="admin-card"
+        style="color:#8190a8">
+
+            No transactions yet.
+
+        </div>`;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    history.map(function(item){
+
+        return `
+
+        <div class="admin-card">
+
+            <b>
+                ${escapeHTML(item.type)}
+            </b>
+
+            ${
+                item.product
+                ?
+                `<br>
+                ${escapeHTML(item.product)}
+                —
+                ${escapeHTML(item.plan)}`
+                :
+                ""
+            }
+
+            <div style="
+            color:#18dfc2;
+            margin-top:6px">
+
+                ₹${Number(item.amount).toFixed(2)}
+
+            </div>
+
+            <small style="
+            color:#8190a8">
+
+                ${escapeHTML(item.date)}
+
+            </small>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(message){
+
+    alert(message);
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
