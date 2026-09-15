@@ -1,74 +1,1015 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KP Panel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KP PANEL SHOP</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    min-height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#02050b;
+    color:#fff;
+    padding:18px 8px 35px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+.card{
+    min-height:calc(100vh - 53px);
+    border:1px solid #6337d5;
+    border-radius:38px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #0b2039 0,
+            #061322 38%,
+            #030a15 75%
+        );
+
+    padding:48px 44px;
+
+    box-shadow:
+        0 0 35px rgba(20,35,77,.5),
+        inset 0 0 40px rgba(40,80,180,.05);
+}
+
+/* Pages */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+    animation:fade .2s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(6px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Logo */
+
+.logo{
+    display:block;
+    width:225px;
+    height:225px;
+
+    object-fit:cover;
+
+    margin:0 auto 18px;
+
+    filter:
+        drop-shadow(0 0 18px rgba(0,100,255,.4));
+}
+
+/* Headings */
+
+h1,
+h2{
+    text-align:center;
+    margin:0;
+    font-weight:900;
+}
+
+h1{
+    font-size:43px;
+    letter-spacing:-1px;
+}
+
+h1 span,
+h2 span{
+    color:#a77cff;
+}
+
+.subtitle{
+    text-align:center;
+
+    color:#c5d2eb;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    line-height:1.45;
+
+    margin:18px 0 34px;
+}
+
+/* India button */
+
+.pill{
+    display:block;
+
+    margin:0 auto 45px;
+
+    padding:16px 24px;
+
+    border-radius:18px;
+
+    border:1px solid #009ddd;
+
+    background:#061827;
+
+    color:#13bcff;
+
+    font-size:19px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.15s;
+}
+
+.pill:hover{
+    background:#09263a;
+}
+
+.pill:active{
+    transform:scale(.98);
+}
+
+/* Form */
+
+.field{
+    margin-bottom:34px;
+}
+
+label{
+    display:block;
+
+    font-size:19px;
+
+    font-weight:900;
+
+    margin-bottom:13px;
+}
+
+.required{
+    color:#ff3c5c;
+}
+
+.optional{
+    color:#7180a1;
+}
+
+input{
+    width:100%;
+
+    height:78px;
+
+    border-radius:17px;
+
+    border:1px solid #394357;
+
+    background:#020710;
+
+    color:white;
+
+    padding:0 25px;
+
+    font-size:19px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+input::placeholder{
+    color:#aeb7c8;
+}
+
+input:focus{
+    border-color:#13bcff;
+
+    box-shadow:
+        0 0 0 3px rgba(19,188,255,.12);
+}
+
+/* Main button */
+
+.primary{
+    width:100%;
+
+    height:78px;
+
+    border:0;
+
+    border-radius:28px;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #8745f2,
+            #3b8ff5,
+            #16c6ed
+        );
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 28px rgba(55,118,255,.3);
+
+    transition:.15s;
+}
+
+.primary:hover{
+    filter:brightness(1.08);
+}
+
+.primary:active{
+    transform:scale(.985);
+}
+
+/* Secondary button */
+
+.secondary{
+    width:100%;
+
+    min-height:78px;
+
+    margin-top:38px;
+
+    border:2px dashed #8950ff;
+
+    border-radius:25px;
+
+    background:rgba(50,19,107,.13);
+
+    color:#bd8bff;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.15s;
+}
+
+.secondary:hover{
+    background:rgba(89,40,150,.2);
+}
+
+.secondary:active{
+    transform:scale(.985);
+}
+
+/* Messages */
+
+.status{
+    display:none;
+
+    margin-top:18px;
+
+    padding:13px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    line-height:1.4;
+}
+
+.status.show{
+    display:block;
+
+    background:#073252;
+
+    border:1px solid #159ed3;
+
+    color:#aeeaff;
+}
+
+.status.error{
+    background:#3b0e1b;
+
+    border-color:#d83a61;
+
+    color:#ffb3c2;
+}
+
+/* Home */
+
+.success{
+    text-align:center;
+}
+
+.success h2{
+    font-size:31px;
+
+    margin:18px 0 10px;
+}
+
+.success p{
+    color:#bdcbe5;
+
+    line-height:1.6;
+}
+
+/* Mobile */
+
+@media(max-width:430px){
+
+    .card{
+        padding:30px 28px;
+    }
+
+    .logo{
+        width:210px;
+        height:210px;
+    }
+
+    h1{
+        font-size:35px;
+    }
+
+    .subtitle{
+        font-size:18px;
+    }
+
+    label{
+        font-size:18px;
+    }
+
+    input{
+        font-size:18px;
+    }
+
+    .primary{
+        font-size:22px;
+    }
+
+    .secondary{
+        font-size:19px;
+    }
+}
+</style>
 </head>
+
 
 <body>
 
-<div class="landing">
+<div class="container">
 
-    <nav class="navbar">
-        <div class="logo">KP <span>PANEL</span></div>
+<main class="card">
 
-        <div class="nav-buttons">
-            <a href="/login" class="btn btn-outline">Login</a>
-            <a href="/register" class="btn btn-primary">Create Account</a>
+
+<!-- ================= LOGIN PAGE ================= -->
+
+<section id="loginPage" class="page active">
+
+    <!-- Logo -->
+    <img
+        class="logo"
+        src="kp_logo.png"
+        alt="KP PANEL SHOP"
+    >
+
+    <h1>
+        KP PANEL <span>SHOP</span>
+    </h1>
+
+    <div class="subtitle">
+        KP PANEL MEANS THE ARDCORE LAYER OF<br>
+        TRUST
+    </div>
+
+
+    <!-- India Store -->
+
+    <button
+        class="pill"
+        type="button"
+        onclick="indiaStore()"
+    >
+        🇮🇳 &nbsp; INDIA VIP STORE (₹ INR)
+    </button>
+
+
+    <!-- Login Form -->
+
+    <form onsubmit="login(event)">
+
+        <div class="field">
+
+            <label>
+                USERNAME OR EMAIL
+            </label>
+
+            <input
+                id="loginId"
+                type="text"
+                autocomplete="username"
+                placeholder="Enter your username or email"
+                required
+            >
+
         </div>
-    </nav>
 
-    <main class="hero">
 
-        <div class="badge">⚡ DIGITAL KEY PANEL</div>
+        <div class="field">
 
-        <h1>
-            Welcome to
-            <span>KP Panel</span>
-        </h1>
+            <label>
+                PASSWORD
+            </label>
 
-        <p>
-            Secure digital key marketplace with instant delivery,
-            wallet balance and easy order management.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="/register" class="btn btn-primary big">
-                Get Started →
-            </a>
-
-            <a href="/login" class="btn btn-dark big">
-                Login
-            </a>
-        </div>
-
-        <div class="features">
-
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Instant Delivery</h3>
-                <p>Get your purchased key instantly.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Wallet System</h3>
-                <p>Add balance and purchase easily.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🔐</div>
-                <h3>Secure Account</h3>
-                <p>Your account and orders stay protected.</p>
-            </div>
+            <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Enter your password"
+                required
+            >
 
         </div>
 
-    </main>
+
+        <button
+            class="primary"
+            type="submit"
+        >
+            SIGN IN NOW
+        </button>
+
+    </form>
+
+
+    <div
+        id="loginMessage"
+        class="status"
+    ></div>
+
+
+    <!-- THIS OPENS CREATE ACCOUNT -->
+
+    <button
+        class="secondary"
+        type="button"
+        onclick="showRegister()"
+    >
+        CREATE NEW ACCOUNT
+    </button>
+
+</section>
+
+
+
+<!-- ================= CREATE ACCOUNT PAGE ================= -->
+
+<section id="registerPage" class="page">
+
+    <img
+        class="logo"
+        src="kp_logo.png"
+        alt="KP PANEL SHOP"
+    >
+
+
+    <h2 style="font-size:43px">
+        Create <span>Account</span>
+    </h2>
+
+
+    <div class="subtitle">
+        Join KP PANEL SHOP — The Hardcore Layer<br>
+        of Trust
+    </div>
+
+
+    <button
+        class="pill"
+        type="button"
+        onclick="indiaStore()"
+    >
+        🇮🇳 &nbsp; INDIA REGISTRATION (₹ INR)
+    </button>
+
+
+    <!-- Registration Form -->
+
+    <form onsubmit="register(event)">
+
+        <div class="field">
+
+            <label>
+                USERNAME
+                <span class="required">*</span>
+            </label>
+
+            <input
+                id="registerUsername"
+                type="text"
+                autocomplete="username"
+                placeholder="Choose a unique username"
+                minlength="3"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                EMAIL
+                <span class="optional">
+                    (OPTIONAL)
+                </span>
+            </label>
+
+            <input
+                id="registerEmail"
+                type="email"
+                autocomplete="email"
+                placeholder="yourname@gmail.com"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                PASSWORD
+                <span class="required">*</span>
+            </label>
+
+            <input
+                id="registerPassword"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Create password (min 6 chars)"
+                minlength="6"
+                required
+            >
+
+        </div>
+
+
+        <button
+            class="primary"
+            type="submit"
+        >
+            REGISTER ACCOUNT NOW
+        </button>
+
+    </form>
+
+
+    <div
+        id="registerMessage"
+        class="status"
+    ></div>
+
+
+    <!-- BACK TO LOGIN -->
+
+    <button
+        class="secondary"
+        type="button"
+        onclick="showLogin()"
+    >
+        ALREADY HAVE AN ACCOUNT?<br>
+        SIGN IN
+    </button>
+
+</section>
+
+
+
+<!-- ================= HOME PAGE ================= -->
+
+<section id="homePage" class="page success">
+
+    <img
+        class="logo"
+        src="kp_logo.png"
+        alt="KP PANEL SHOP"
+    >
+
+    <h2>
+        Welcome to KP PANEL SHOP
+    </h2>
+
+    <p id="welcomeText"></p>
+
+
+    <button
+        class="secondary"
+        type="button"
+        onclick="logout()"
+    >
+        SIGN OUT
+    </button>
+
+</section>
+
+
+</main>
 
 </div>
+
+
+
+<script>
+
+/*
+==================================================
+LOCAL ACCOUNT STORAGE
+==================================================
+*/
+
+const ACCOUNT_KEY = "kp_panel_shop_account";
+
+
+/*
+==================================================
+GET SAVED ACCOUNT
+==================================================
+*/
+
+function getAccount(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(ACCOUNT_KEY) || "null"
+        );
+
+    }catch(error){
+
+        return null;
+
+    }
+
+}
+
+
+/*
+==================================================
+SHOW PAGE
+==================================================
+*/
+
+function showPage(pageId){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+
+    /*
+    Clear old messages
+    */
+
+    document
+        .querySelectorAll(".status")
+        .forEach(message => {
+
+            message.className = "status";
+
+            message.textContent = "";
+
+        });
+
+}
+
+
+/*
+==================================================
+SHOW LOGIN
+==================================================
+*/
+
+function showLogin(){
+
+    showPage("loginPage");
+
+}
+
+
+/*
+==================================================
+SHOW CREATE ACCOUNT
+==================================================
+*/
+
+function showRegister(){
+
+    /*
+    CREATE NEW ACCOUNT button
+    isi function ko call karta hai.
+    */
+
+    showPage("registerPage");
+
+}
+
+
+/*
+==================================================
+INDIA STORE
+==================================================
+*/
+
+function indiaStore(){
+
+    alert(
+        "India Store Selected\n\nCurrency: ₹ INR"
+    );
+
+}
+
+
+/*
+==================================================
+MESSAGE
+==================================================
+*/
+
+function showMessage(
+    elementId,
+    message,
+    error = false
+){
+
+    const element =
+        document.getElementById(elementId);
+
+
+    element.textContent = message;
+
+
+    element.className =
+        "status show" +
+        (error ? " error" : "");
+
+}
+
+
+/*
+==================================================
+REGISTER ACCOUNT
+==================================================
+*/
+
+function register(event){
+
+    event.preventDefault();
+
+
+    const username =
+        document
+        .getElementById("registerUsername")
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById("registerEmail")
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById("registerPassword")
+        .value;
+
+
+    /*
+    Password check
+    */
+
+    if(password.length < 6){
+
+        showMessage(
+            "registerMessage",
+            "Password must be at least 6 characters.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    /*
+    Save account
+    */
+
+    const account = {
+
+        username: username,
+
+        email: email,
+
+        password: password
+
+    };
+
+
+    localStorage.setItem(
+        ACCOUNT_KEY,
+        JSON.stringify(account)
+    );
+
+
+    showMessage(
+        "registerMessage",
+        "Account created successfully! Opening Sign In..."
+    );
+
+
+    /*
+    Automatically return to login
+    */
+
+    setTimeout(function(){
+
+        document
+            .getElementById("loginId")
+            .value = username;
+
+
+        showLogin();
+
+
+        showMessage(
+            "loginMessage",
+            "Account created. Enter your password to sign in."
+        );
+
+    }, 700);
+
+}
+
+
+/*
+==================================================
+LOGIN
+==================================================
+*/
+
+function login(event){
+
+    event.preventDefault();
+
+
+    const loginId =
+        document
+        .getElementById("loginId")
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
+
+
+    const account = getAccount();
+
+
+    /*
+    No account
+    */
+
+    if(!account){
+
+        showMessage(
+            "loginMessage",
+            "No account found. Tap CREATE NEW ACCOUNT first.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    /*
+    Username OR Email
+    */
+
+    const usernameMatch =
+        loginId.toLowerCase() ===
+        account.username.toLowerCase();
+
+
+    const emailMatch =
+        account.email &&
+        loginId.toLowerCase() ===
+        account.email.toLowerCase();
+
+
+    /*
+    Check credentials
+    */
+
+    if(
+        (!usernameMatch && !emailMatch) ||
+        password !== account.password
+    ){
+
+        showMessage(
+            "loginMessage",
+            "Invalid username/email or password.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    /*
+    Login successful
+    */
+
+    showPage("homePage");
+
+
+    document
+        .getElementById("welcomeText")
+        .textContent =
+        "Signed in successfully as " +
+        account.username +
+        ".";
+
+}
+
+
+/*
+==================================================
+LOGOUT
+==================================================
+*/
+
+function logout(){
+
+    document
+        .getElementById("loginPassword")
+        .value = "";
+
+
+    showLogin();
+
+
+    showMessage(
+        "loginMessage",
+        "You have been signed out."
+    );
+
+}
+
+</script>
 
 </body>
 </html>
