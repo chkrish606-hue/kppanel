@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase Successful</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="success-box">
+
+        <div class="success-icon">✅</div>
+
+        <h1>Purchase Successful</h1>
+
+        <p style="color:#94a3b8;margin:15px 0;">
+            {{ product["name"] }} purchased successfully.
+        </p>
+
+        <div class="card">
+
+            <p style="color:#94a3b8;margin-bottom:10px;">
+                Your Key
+            </p>
+
+            <div class="order-key">
+                {{ key_value }}
+            </div>
+
+            <p style="margin-top:15px;">
+                Paid:
+                <strong>₹{{ "%.2f"|format(price) }}</strong>
+            </p>
+
+        </div>
+
+        <div class="action-row" style="justify-content:center;">
+
+            <a href="{{ url_for('orders') }}" class="btn">
+                My Orders
+            </a>
+
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                Back to Shop
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
