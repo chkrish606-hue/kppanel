@@ -2,186 +2,631 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KP PANEL</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KP PANEL - Login</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    background:#020914;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* HEADER */
+header{
+    height:90px;
+    border-bottom:1px solid #123b61;
+    background:#030d19;
+}
+
+.nav{
+    height:100%;
+    max-width:1450px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:34px;
+    font-weight:900;
+}
+
+.logo-icon{
+    color:#08aaff;
+    font-size:42px;
+    text-shadow:0 0 20px #008cff;
+}
+
+.logo-blue{
+    color:#08aaff;
+}
+
+.logo-white{
+    color:#fff;
+}
+
+.nav-links{
+    display:flex;
+    gap:40px;
+}
+
+.nav-links a{
+    color:#b9c6d7;
+    text-decoration:none;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.nav-links a:hover{
+    color:#08aaff;
+}
+
+.login-top{
+    background:linear-gradient(135deg,#087cff,#08b4ff);
+    border:1px solid #08aaff;
+    color:#fff;
+    padding:13px 30px;
+    border-radius:14px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* MAIN */
+.container{
+    width:min(1450px,94%);
+    margin:auto;
+}
+
+.hero{
+    min-height:750px;
+    display:grid;
+    grid-template-columns:1fr 500px;
+    gap:45px;
+    align-items:center;
+}
+
+/* LEFT */
+.badge{
+    display:inline-block;
+    padding:9px 17px;
+    border:1px solid #087cff;
+    border-radius:30px;
+    color:#00c4ff;
+    margin-bottom:22px;
+    background:#06182a;
+}
+
+.hero h1{
+    font-size:70px;
+    line-height:1;
+    margin-bottom:20px;
+}
+
+.blue{
+    color:#08aaff;
+    text-shadow:0 0 20px #008cff;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:18px;
+}
+
+.hero h2 span{
+    color:#08aaff;
+}
+
+.hero p{
+    color:#b7c4d5;
+    max-width:600px;
+    font-size:18px;
+    line-height:1.6;
+}
+
+/* PHONE */
+.visual{
+    height:480px;
+    position:relative;
+}
+
+.phone{
+    position:absolute;
+    width:190px;
+    height:380px;
+    left:35%;
+    top:50px;
+    border:5px solid #34485e;
+    border-radius:38px;
+    background:
+        linear-gradient(145deg,#1a293a,#02060c 55%,#006bc8);
+    box-shadow:
+        0 0 50px #006dff,
+        inset 0 0 30px #07528b;
+    transform:rotate(-8deg);
+}
+
+.phone:before{
+    content:"";
+    position:absolute;
+    width:75px;
+    height:22px;
+    background:#000;
+    border-radius:20px;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.phone:after{
+    content:"KP";
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    font-size:55px;
+    font-weight:900;
+    text-shadow:0 0 25px #00aaff;
+}
+
+.phone.second{
+    transform:rotate(9deg) translate(100px,20px);
+    opacity:.75;
+}
+
+.key{
+    position:absolute;
+    right:0;
+    padding:14px 20px;
+    background:#041426;
+    border:1px solid #087cff;
+    border-radius:12px;
+    box-shadow:0 0 20px #006dff55;
+    font-weight:bold;
+}
+
+.key1{top:100px}
+.key2{top:205px}
+.key3{top:310px}
+
+/* LOGIN */
+.login-box{
+    background:linear-gradient(145deg,#071827,#020a14);
+    border:2px solid #087cff;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 0 35px #006dff22;
+}
+
+.login-logo{
+    text-align:center;
+    font-size:38px;
+    font-weight:900;
+    margin-bottom:28px;
+}
+
+.login-logo span{
+    color:#08aaff;
+}
+
+.login-box h2{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9eafc4;
+    margin-bottom:30px;
+    font-size:17px;
+}
+
+.input{
+    width:100%;
+    padding:17px;
+    margin-bottom:15px;
+    border:1px solid #315575;
+    border-radius:12px;
+    background:#061321;
+    color:#fff;
+    outline:none;
+    font-size:16px;
+}
+
+.input:focus{
+    border-color:#08aaff;
+    box-shadow:0 0 10px #08aaff33;
+}
+
+.login-main{
+    width:100%;
+    padding:17px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#087cff,#08b4ff);
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-main:hover{
+    filter:brightness(1.15);
+}
+
+/* OR */
+.or{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:#8b9caf;
+    margin:25px 0;
+}
+
+.or:before,
+.or:after{
+    content:"";
+    height:1px;
+    background:#29435e;
+    flex:1;
+}
+
+/* GOOGLE */
+.google-btn{
+    width:100%;
+    padding:16px;
+    border-radius:12px;
+    border:1px solid #4b6680;
+    background:#fff;
+    color:#202124;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+}
+
+.google-btn:hover{
+    border-color:#08aaff;
+    box-shadow:0 0 18px #008cff33;
+}
+
+.google-icon{
+    font-size:23px;
+    font-weight:900;
+}
+
+.register{
+    text-align:center;
+    color:#9eafc4;
+    margin:25px 0;
+}
+
+.register a{
+    color:#08aaff;
+    cursor:pointer;
+}
+
+.security{
+    border-top:1px solid #1b354d;
+    padding-top:20px;
+    color:#b7c4d5;
+    line-height:1.5;
+}
+
+/* CATEGORIES */
+.categories{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    padding-bottom:60px;
+}
+
+.card{
+    background:#061321;
+    border:1px solid #124d83;
+    border-radius:15px;
+    padding:25px;
+}
+
+.card h3{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#9eafc4;
+}
+
+.shop{
+    margin-top:18px;
+    color:#08aaff;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    border-top:1px solid #12304d;
+    padding:25px;
+    text-align:center;
+    color:#718399;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding:35px 0;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .visual{
+        height:420px;
+    }
+
+    .login-box{
+        width:100%;
+    }
+
+    .categories{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    header{
+        height:75px;
+    }
+
+    .nav{
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .logo-icon{
+        font-size:30px;
+    }
+
+    .login-top{
+        padding:10px 18px;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .login-box{
+        padding:22px;
+    }
+
+    .login-box h2{
+        font-size:25px;
+    }
+
+    .login-logo{
+        font-size:32px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">♛ <b>KP</b> PANEL</div>
+<div class="nav">
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#shop">Shop</a>
-      <a href="#how">How It Works</a>
-      <a href="#support">Support</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="logo">
+        <div class="logo-icon">♛</div>
+        <span class="logo-blue">KP</span>
+        <span class="logo-white">PANEL</span>
+    </div>
 
-    <button class="top-login" onclick="openLogin()">Login</button>
-  </div>
+    <div class="nav-links">
+        <a onclick="home()">Home</a>
+        <a onclick="shop()">Shop</a>
+        <a onclick="howWorks()">How It Works</a>
+        <a onclick="support()">Support</a>
+        <a onclick="contact()">Contact</a>
+    </div>
+
+    <button class="login-top" onclick="openLogin()">
+        Login
+    </button>
+
+</div>
 </header>
 
-<main id="home">
 
-<div class="wrap">
+<main>
 
-<section class="hero">
+<div class="container">
 
-<div class="left">
+<div class="hero">
 
-  <div class="badge">🟢 Trusted • Fast • Secure</div>
+<!-- LEFT SIDE -->
 
-  <h1><span>KP</span> PANEL</h1>
+<div>
 
-  <h2>
-    Your Trusted Source for
-    <em>Phone & Digital Keys</em>
-  </h2>
+<div class="badge">
+🟢 Trusted • Fast • Secure
+</div>
 
-  <p>
-    Get premium phone keys, activation codes and digital products
-    at competitive prices. Fast delivery, secure payments and support.
-  </p>
+<h1>
+<span class="blue">KP</span> PANEL
+</h1>
 
-  <div class="actions">
-    <button class="primary"
-      onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
-      Browse Products →
-    </button>
+<h2>
+Your Trusted Source for
+<span>Phone & Digital Keys</span>
+</h2>
 
-    <button class="secondary"
-      onclick="document.getElementById('support').scrollIntoView({behavior:'smooth'})">
-      Contact Support
-    </button>
-  </div>
+<p>
+Get premium phone keys, activation codes and digital products
+at competitive prices. Fast delivery, secure payments and support.
+</p>
 
-  <div class="visual">
-    <div class="phone"></div>
-    <div class="phone phone2"></div>
+<div class="visual">
 
-    <div class="tag tag1">🍎 iPhone Keys</div>
-    <div class="tag tag2">🤖 Android Keys</div>
-    <div class="tag tag3">▣ PC Keys</div>
-  </div>
+<div class="phone"></div>
+<div class="phone second"></div>
+
+<div class="key key1">
+🍎 iPhone Keys
+</div>
+
+<div class="key key2">
+🤖 Android Keys
+</div>
+
+<div class="key key3">
+▣ PC Keys
+</div>
+
+</div>
 
 </div>
 
 
-<aside class="login-card" id="loginCard">
+<!-- LOGIN -->
 
-  <div class="login-logo">
-    <span>♛ KP</span> PANEL
-  </div>
+<div class="login-box" id="loginBox">
 
-  <h2>Login to Your Account</h2>
+<div class="login-logo">
+<span>♛ KP</span> PANEL
+</div>
 
-  <p class="sub">
-    Access your orders, wallet and more.
-  </p>
+<h2>
+Login to Your Account
+</h2>
 
-  <form onsubmit="login(event)">
+<p class="subtitle">
+Access your orders, wallet and more.
+</p>
 
-    <input
-      id="username"
-      type="text"
-      placeholder="Username / Email"
-      required
-    >
+<form onsubmit="login(event)">
 
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-      required
-    >
+<input
+class="input"
+id="username"
+type="text"
+placeholder="Telegram ID / Username"
+required
+>
 
-    <button class="primary full">
-      Login
-    </button>
+<input
+class="input"
+id="password"
+type="password"
+placeholder="Password"
+required
+>
 
-  </form>
+<button class="login-main">
+Login
+</button>
 
-  <div class="or">
-    <span>OR</span>
-  </div>
-
-  <button class="google" onclick="googleLogin()">
-    <strong>G</strong> Login with Google
-  </button>
-
-  <p class="register">
-    Don't have an account?
-    <a onclick="registerUser()">Register Now</a>
-  </p>
-
-  <div class="safe">
-    🛡️ <b>Your data is safe with us</b>
-    <br>
-    <small>
-      We use secure practices to protect your information.
-    </small>
-  </div>
-
-</aside>
-
-</section>
+</form>
 
 
-<section class="cards" id="shop">
-
-  <div class="card">
-    <h3>🍎 iPhone</h3>
-    <p>Reliable & tested phone keys</p>
-    <button onclick="buy('iPhone')">
-      Shop Now →
-    </button>
-  </div>
-
-  <div class="card">
-    <h3>🤖 Android</h3>
-    <p>Top brands & models</p>
-    <button onclick="buy('Android')">
-      Shop Now →
-    </button>
-  </div>
-
-  <div class="card">
-    <h3>▣ PC</h3>
-    <p>Windows & software keys</p>
-    <button onclick="buy('PC')">
-      Shop Now →
-    </button>
-  </div>
-
-</section>
+<div class="or">
+OR
+</div>
 
 
-<section class="info" id="how">
-  <h2>How It Works</h2>
-  <p>
-    Register → Add Balance → Select Product → Receive Key
-  </p>
-</section>
+<!-- GOOGLE LOGIN -->
+
+<button class="google-btn" onclick="googleLogin()">
+
+<span class="google-icon">G</span>
+
+Login with Google
+
+</button>
 
 
-<section class="info" id="support">
-  <h2>Support</h2>
-  <p>
-    Add your support Telegram/contact here.
-  </p>
-</section>
+<div class="register">
+Don't have an account?
+<a onclick="register()">
+Register Now
+</a>
+</div>
 
 
-<section class="info" id="contact">
-  <h2>Contact</h2>
-  <p>
-    Add your business contact details here.
-  </p>
-</section>
+<div class="security">
+🛡️ &nbsp;
+<strong>Your data is safe with us</strong>
+
+<br>
+
+We use secure practices to protect your information.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<div class="categories">
+
+<div class="card">
+<h3>🍎 iPhone</h3>
+<p>Reliable & tested phone keys</p>
+<div class="shop" onclick="product('iPhone')">
+Shop Now →
+</div>
+</div>
+
+<div class="card">
+<h3>🤖 Android</h3>
+<p>Top brands & models</p>
+<div class="shop" onclick="product('Android')">
+Shop Now →
+</div>
+</div>
+
+<div class="card">
+<h3>▣ PC</h3>
+<p>Windows & software keys</p>
+<div class="shop" onclick="product('PC')">
+Shop Now →
+</div>
+</div>
+
+</div>
 
 </div>
 
@@ -189,76 +634,57 @@
 
 
 <footer>
-  © 2026 KP PANEL • Keys Today • Freedom Tomorrow
+© 2026 KP PANEL • Keys Today • Freedom Tomorrow
 </footer>
 
 
 <script>
 
+/*
+=================================================
+GOOGLE LOGIN SETTINGS
+=================================================
+
+For REAL Google OAuth, replace this:
+
+YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com
+
+with your Google OAuth Client ID.
+
+Example:
+
+123456789-xxxxxxxx.apps.googleusercontent.com
+
+=================================================
+*/
+
 const GOOGLE_CLIENT_ID =
 "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
 
 
-function openLogin(){
-
-  document
-    .getElementById("loginCard")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-
-function login(e){
-
-  e.preventDefault();
-
-  alert(
-    "Login button working. Real authentication ke liye backend/database connect karna hoga."
-  );
-
-}
-
-
-function registerUser(){
-
-  alert(
-    "Register button working. Registration backend baad mein connect kiya ja sakta hai."
-  );
-
-}
-
-
-function buy(name){
-
-  alert(
-    name + " selected. Real order/payment ke liye backend connect karein."
-  );
-
-}
-
-
 function googleLogin(){
 
-  if(GOOGLE_CLIENT_ID.startsWith("YOUR_")){
+    if(GOOGLE_CLIENT_ID.startsWith("YOUR_")){
 
-    alert(
-      "Google Login ready hai. GOOGLE_CLIENT_ID ko apne Google OAuth Client ID se replace karein."
-    );
+        alert(
+        "Google Login button is ready.\n\n" +
+        "Add your Google OAuth Client ID in the HTML code."
+        );
 
-    return;
-  }
+        return;
+    }
 
-  const redirect =
+    const redirect =
     encodeURIComponent(
-      window.location.origin + "/google-callback"
+        window.location.origin + "/google-callback.html"
     );
 
-  const scope =
-    encodeURIComponent("openid email profile");
+    const scope =
+    encodeURIComponent(
+        "openid email profile"
+    );
 
-  window.location.href =
+    const url =
     "https://accounts.google.com/o/oauth2/v2/auth" +
     "?client_id=" +
     encodeURIComponent(GOOGLE_CLIENT_ID) +
@@ -266,7 +692,102 @@ function googleLogin(){
     redirect +
     "&response_type=code" +
     "&scope=" +
-    scope;
+    scope +
+    "&access_type=online";
+
+    window.location.href = url;
+}
+
+
+function login(event){
+
+    event.preventDefault();
+
+    const username =
+    document.getElementById("username").value;
+
+    alert(
+        "Login submitted for: " + username +
+        "\n\nBackend/database connect karna hoga."
+    );
+}
+
+
+function register(){
+
+    alert(
+        "Register page open hoga.\n\n" +
+        "Backend connect hone ke baad account create hoga."
+    );
+}
+
+
+function openLogin(){
+
+    document
+    .getElementById("loginBox")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function home(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function shop(){
+
+    alert("Shop section");
+}
+
+
+function howWorks(){
+
+    alert(
+        "1. Register\n" +
+        "2. Add Balance\n" +
+        "3. Select Product\n" +
+        "4. Receive Key"
+    );
+
+}
+
+
+function support(){
+
+    alert(
+        "Support\n\n" +
+        "Please connect your Telegram/WhatsApp support link here."
+    );
+
+}
+
+
+function contact(){
+
+    alert(
+        "KP PANEL Support\n\n" +
+        "Add your support contact here."
+    );
+
+}
+
+
+function product(name){
+
+    alert(
+        name +
+        " products selected.\n\n" +
+        "Connect your backend/product database for real purchases."
+    );
 
 }
 
