@@ -12,8 +12,8 @@ DATABASE = "database.db"
 # =========================
 # ADMIN SETTINGS
 # =========================
-ADMIN_EMAIL = "admin@kppanel.com"
-ADMIN_PASSWORD = "admin123"
+ADMIN_EMAIL = "chkrish606@gmail.com"
+ADMIN_PASSWORD = "Ckj@123#"
 # =========================
 # DATABASE
 # =========================
