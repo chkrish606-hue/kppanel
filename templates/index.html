@@ -2,1021 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>KP PANEL SHOP</title>
-
-<style>
-*{
-    box-sizing:border-box;
-}
-
-html,body{
-    margin:0;
-    min-height:100%;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#02050b;
-    color:#fff;
-    padding:18px 8px 35px;
-}
-
-.container{
-    max-width:700px;
-    margin:auto;
-}
-
-.card{
-    min-height:calc(100vh - 53px);
-    border:1px solid #6337d5;
-    border-radius:38px;
-
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            #0b2039 0,
-            #061322 38%,
-            #030a15 75%
-        );
-
-    padding:48px 44px;
-
-    box-shadow:
-        0 0 35px rgba(20,35,77,.5),
-        inset 0 0 40px rgba(40,80,180,.05);
-}
-
-/* Pages */
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-    animation:fade .2s ease;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(6px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* Logo */
-
-.logo{
-    display:block;
-    width:225px;
-    height:225px;
-
-    object-fit:cover;
-
-    margin:0 auto 18px;
-
-    filter:
-        drop-shadow(0 0 18px rgba(0,100,255,.4));
-}
-
-/* Headings */
-
-h1,
-h2{
-    text-align:center;
-    margin:0;
-    font-weight:900;
-}
-
-h1{
-    font-size:43px;
-    letter-spacing:-1px;
-}
-
-h1 span,
-h2 span{
-    color:#a77cff;
-}
-
-.subtitle{
-    text-align:center;
-
-    color:#c5d2eb;
-
-    font-size:20px;
-
-    font-weight:700;
-
-    line-height:1.45;
-
-    margin:18px 0 34px;
-}
-
-/* India button */
-
-.pill{
-    display:block;
-
-    margin:0 auto 45px;
-
-    padding:16px 24px;
-
-    border-radius:18px;
-
-    border:1px solid #009ddd;
-
-    background:#061827;
-
-    color:#13bcff;
-
-    font-size:19px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.15s;
-}
-
-.pill:hover{
-    background:#09263a;
-}
-
-.pill:active{
-    transform:scale(.98);
-}
-
-/* Form */
-
-.field{
-    margin-bottom:34px;
-}
-
-label{
-    display:block;
-
-    font-size:19px;
-
-    font-weight:900;
-
-    margin-bottom:13px;
-}
-
-.required{
-    color:#ff3c5c;
-}
-
-.optional{
-    color:#7180a1;
-}
-
-input{
-    width:100%;
-
-    height:78px;
-
-    border-radius:17px;
-
-    border:1px solid #394357;
-
-    background:#020710;
-
-    color:white;
-
-    padding:0 25px;
-
-    font-size:19px;
-
-    outline:none;
-
-    transition:.2s;
-}
-
-input::placeholder{
-    color:#aeb7c8;
-}
-
-input:focus{
-    border-color:#13bcff;
-
-    box-shadow:
-        0 0 0 3px rgba(19,188,255,.12);
-}
-
-/* Main button */
-
-.primary{
-    width:100%;
-
-    height:78px;
-
-    border:0;
-
-    border-radius:28px;
-
-    color:white;
-
-    font-size:24px;
-
-    font-weight:900;
-
-    letter-spacing:2px;
-
-    background:
-        linear-gradient(
-            105deg,
-            #8745f2,
-            #3b8ff5,
-            #16c6ed
-        );
-
-    cursor:pointer;
-
-    box-shadow:
-        0 0 28px rgba(55,118,255,.3);
-
-    transition:.15s;
-}
-
-.primary:hover{
-    filter:brightness(1.08);
-}
-
-.primary:active{
-    transform:scale(.985);
-}
-
-/* Secondary button */
-
-.secondary{
-    width:100%;
-
-    min-height:78px;
-
-    margin-top:38px;
-
-    border:2px dashed #8950ff;
-
-    border-radius:25px;
-
-    background:rgba(50,19,107,.13);
-
-    color:#bd8bff;
-
-    font-size:21px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.15s;
-}
-
-.secondary:hover{
-    background:rgba(89,40,150,.2);
-}
-
-.secondary:active{
-    transform:scale(.985);
-}
-
-/* Messages */
-
-.status{
-    display:none;
-
-    margin-top:18px;
-
-    padding:13px;
-
-    border-radius:14px;
-
-    text-align:center;
-
-    font-weight:700;
-
-    line-height:1.4;
-}
-
-.status.show{
-    display:block;
-
-    background:#073252;
-
-    border:1px solid #159ed3;
-
-    color:#aeeaff;
-}
-
-.status.error{
-    background:#3b0e1b;
-
-    border-color:#d83a61;
-
-    color:#ffb3c2;
-}
-
-/* Home */
-
-.success{
-    text-align:center;
-}
-
-.success h2{
-    font-size:31px;
-
-    margin:18px 0 10px;
-}
-
-.success p{
-    color:#bdcbe5;
-
-    line-height:1.6;
-}
-
-/* Mobile */
-
-@media(max-width:430px){
-
-    .card{
-        padding:30px 28px;
-    }
-
-    .logo{
-        width:210px;
-        height:210px;
-    }
-
-    h1{
-        font-size:35px;
-    }
-
-    .subtitle{
-        font-size:18px;
-    }
-
-    label{
-        font-size:18px;
-    }
-
-    input{
-        font-size:18px;
-    }
-
-    .primary{
-        font-size:22px;
-    }
-
-    .secondary{
-        font-size:19px;
-    }
-}
-</style>
-</head>
-
-
-<body>
-
-<div class="container">
-
-<main class="card">
-
-
-<!-- ================= LOGIN PAGE ================= -->
-
-<section id="loginPage" class="page active">
-
-    <!-- Logo -->
-    <img
-        class="logo"
-        src="kp_logo.png"
-        alt="KP PANEL SHOP"
-    >
-
-    <h1>
-        KP PANEL <span>SHOP</span>
-    </h1>
-
-    <div class="subtitle">
-        KP PANEL MEANS THE ARDCORE LAYER OF<br>
-        TRUST
-    </div>
-
-
-    <!-- India Store -->
-
-    <button
-        class="pill"
-        type="button"
-        onclick="indiaStore()"
-    >
-        🇮🇳 &nbsp; INDIA VIP STORE (₹ INR)
-    </button>
-
-
-    <!-- Login Form -->
-
-    <form onsubmit="login(event)">
-
-        <div class="field">
-
-            <label>
-                USERNAME OR EMAIL
-            </label>
-
-            <input
-                id="loginId"
-                type="text"
-                autocomplete="username"
-                placeholder="Enter your username or email"
-                required
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label>
-                PASSWORD
-            </label>
-
-            <input
-                id="loginPassword"
-                type="password"
-                autocomplete="current-password"
-                placeholder="Enter your password"
-                required
-            >
-
-        </div>
-
-
-        <button
-            class="primary"
-            type="submit"
-        >
-            SIGN IN NOW
-        </button>
-
-    </form>
-
-
-    <div
-        id="loginMessage"
-        class="status"
-    ></div>
-
-
-    <!-- THIS OPENS CREATE ACCOUNT -->
-
-    <button
-        class="secondary"
-        type="button"
-        onclick="showRegister()"
-    >
-        CREATE NEW ACCOUNT
-    </button>
-
-</section>
-
-
-
-<!-- ================= CREATE ACCOUNT PAGE ================= -->
-
-<section id="registerPage" class="page">
-
-    <img
-        class="logo"
-        src="kp_logo.png"
-        alt="KP PANEL SHOP"
-    >
-
-
-    <h2 style="font-size:43px">
-        Create <span>Account</span>
-    </h2>
-
-
-    <div class="subtitle">
-        Join KP PANEL SHOP — The Hardcore Layer<br>
-        of Trust
-    </div>
-
-
-    <button
-        class="pill"
-        type="button"
-        onclick="indiaStore()"
-    >
-        🇮🇳 &nbsp; INDIA REGISTRATION (₹ INR)
-    </button>
-
-
-    <!-- Registration Form -->
-
-    <form onsubmit="register(event)">
-
-        <div class="field">
-
-            <label>
-                USERNAME
-                <span class="required">*</span>
-            </label>
-
-            <input
-                id="registerUsername"
-                type="text"
-                autocomplete="username"
-                placeholder="Choose a unique username"
-                minlength="3"
-                required
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label>
-                EMAIL
-                <span class="optional">
-                    (OPTIONAL)
-                </span>
-            </label>
-
-            <input
-                id="registerEmail"
-                type="email"
-                autocomplete="email"
-                placeholder="yourname@gmail.com"
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label>
-                PASSWORD
-                <span class="required">*</span>
-            </label>
-
-            <input
-                id="registerPassword"
-                type="password"
-                autocomplete="new-password"
-                placeholder="Create password (min 6 chars)"
-                minlength="6"
-                required
-            >
-
-        </div>
-
-
-        <button
-            class="primary"
-            type="submit"
-        >
-            REGISTER ACCOUNT NOW
-        </button>
-
-    </form>
-
-
-    <div
-        id="registerMessage"
-        class="status"
-    ></div>
-
-
-    <!-- BACK TO LOGIN -->
-
-    <button
-        class="secondary"
-        type="button"
-        onclick="showLogin()"
-    >
-        ALREADY HAVE AN ACCOUNT?<br>
-        SIGN IN
-    </button>
-
-</section>
-
-
-
-<!-- ================= HOME PAGE ================= -->
-
-<section id="homePage" class="page success">
-
-    <img
-        class="logo"
-        src="kp_logo.png"
-        alt="KP PANEL SHOP"
-    >
-
-    <h2>
-        Welcome to KP PANEL SHOP
-    </h2>
-
-    <p id="welcomeText"></p>
-
-
-    <button
-        class="secondary"
-        type="button"
-        onclick="logout()"
-    >
-        SIGN OUT
-    </button>
-
-</section>
-
-
-</main>
-
-</div>
-
-
-
-<script>
-
-/*
-==================================================
-LOCAL ACCOUNT STORAGE
-==================================================
-*/
-
-const ACCOUNT_KEY = "kp_panel_shop_account";
-
-
-/*
-==================================================
-GET SAVED ACCOUNT
-==================================================
-*/
-
-function getAccount(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem(ACCOUNT_KEY) || "null"
-        );
-
-    }catch(error){
-
-        return null;
-
-    }
-
-}
-
-
-/*
-==================================================
-SHOW PAGE
-==================================================
-*/
-
-function showPage(pageId){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
-
-            page.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(pageId)
-        .classList.add("active");
-
-
-    /*
-    Clear old messages
-    */
-
-    document
-        .querySelectorAll(".status")
-        .forEach(message => {
-
-            message.className = "status";
-
-            message.textContent = "";
-
-        });
-
-}
-
-
-/*
-==================================================
-SHOW LOGIN
-==================================================
-*/
-
-function showLogin(){
-
-    showPage("loginPage");
-
-}
-
-
-/*
-==================================================
-SHOW CREATE ACCOUNT
-==================================================
-*/
-
-function showRegister(){
-
-    /*
-    CREATE NEW ACCOUNT button
-    isi function ko call karta hai.
-    */
-
-    showPage("registerPage");
-
-}
-
-
-/*
-==================================================
-INDIA STORE
-==================================================
-*/
-
-function indiaStore(){
-
-    alert(
-        "India Store Selected\n\nCurrency: ₹ INR"
-    );
-
-}
-
-
-/*
-==================================================
-MESSAGE
-==================================================
-*/
-
-function showMessage(
-    elementId,
-    message,
-    error = false
-){
-
-    const element =
-        document.getElementById(elementId);
-
-
-    element.textContent = message;
-
-
-    element.className =
-        "status show" +
-        (error ? " error" : "");
-
-}
-
-
-/*
-==================================================
-REGISTER ACCOUNT
-==================================================
-*/
-
-function register(event){
-
-    event.preventDefault();
-
-
-    const username =
-        document
-        .getElementById("registerUsername")
-        .value
-        .trim();
-
-
-    const email =
-        document
-        .getElementById("registerEmail")
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById("registerPassword")
-        .value;
-
-
-    /*
-    Password check
-    */
-
-    if(password.length < 6){
-
-        showMessage(
-            "registerMessage",
-            "Password must be at least 6 characters.",
-            true
-        );
-
-        return;
-
-    }
-
-
-    /*
-    Save account
-    */
-
-    const account = {
-
-        username: username,
-
-        email: email,
-
-        password: password
-
-    };
-
-
-    localStorage.setItem(
-        ACCOUNT_KEY,
-        JSON.stringify(account)
-    );
-
-
-    showMessage(
-        "registerMessage",
-        "Account created successfully! Opening Sign In..."
-    );
-
-
-    /*
-    Automatically return to login
-    */
-
-    setTimeout(function(){
-
-        document
-            .getElementById("loginId")
-            .value = username;
-
-
-        showLogin();
-
-
-        showMessage(
-            "loginMessage",
-            "Account created. Enter your password to sign in."
-        );
-
-    }, 700);
-
-}
-
-
-/*
-==================================================
-LOGIN
-==================================================
-*/
-
-function login(event){
-
-    event.preventDefault();
-
-
-    const loginId =
-        document
-        .getElementById("loginId")
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
-
-
-    const account = getAccount();
-
-
-    /*
-    No account
-    */
-
-    if(!account){
-
-        showMessage(
-            "loginMessage",
-            "No account found. Tap CREATE NEW ACCOUNT first.",
-            true
-        );
-
-        return;
-
-    }
-
-
-    /*
-    Username OR Email
-    */
-
-    const usernameMatch =
-        loginId.toLowerCase() ===
-        account.username.toLowerCase();
-
-
-    const emailMatch =
-        account.email &&
-        loginId.toLowerCase() ===
-        account.email.toLowerCase();
-
-
-    /*
-    Check credentials
-    */
-
-    if(
-        (!usernameMatch && !emailMatch) ||
-        password !== account.password
-    ){
-
-        showMessage(
-            "loginMessage",
-            "Invalid username/email or password.",
-            true
-        );
-
-        return;
-
-    }
-
-
-    /*
-    Login successful
-    */
-
-    showPage("homePage");
-
-
-    document
-        .getElementById("welcomeText")
-        .textContent =
-        "Signed in successfully as " +
-        account.username +
-        ".";
-
-}
-
-
-/*
-==================================================
-LOGOUT
-==================================================
-*/
-
-function logout(){
-
-    document
-        .getElementById("loginPassword")
-        .value = "";
-
-
-    showLogin();
-
-
-    showMessage(
-        "loginMessage",
-        "You have been signed out."
-    );
-
-}
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>KP PANEL SHOP</title>
 
@@ -1045,729 +30,408 @@ body{
 }
 
 /* TOP BAR */
-
 .topbar{
     position:sticky;
     top:0;
     z-index:50;
-
     display:flex;
     gap:12px;
-
     padding:15px 20px;
-
     background:rgba(3,9,17,.95);
     backdrop-filter:blur(15px);
-
     border-bottom:1px solid #0b3949;
 }
 
 .top-btn{
     flex:1;
-
     height:58px;
-
     border-radius:25px;
-
     border:1px solid #075c68;
-
     background:#07151e;
-
     color:white;
-
     font-size:18px;
     font-weight:900;
-
     cursor:pointer;
 }
 
-.balance{
-    color:#13e1c3;
-}
+.balance{ color:#13e1c3; }
 
 .topup{
-    background:linear-gradient(
-        100deg,
-        #0fc8ec,
-        #a873f4
-    );
-
+    background:linear-gradient(100deg,#0fc8ec,#a873f4);
     border:0;
 }
 
 /* CONTENT */
-
-.content{
-    padding:30px 27px;
-}
+.content{ padding:30px 27px; }
 
 .page-title{
     margin:0 0 15px;
-
     font-size:35px;
-
     font-weight:900;
 }
 
 .breadcrumb{
     color:#75849e;
-
     font-size:18px;
-
     font-weight:900;
-
     margin-bottom:35px;
 }
 
-.breadcrumb span{
-    color:#12d5ee;
-}
+.breadcrumb span{ color:#12d5ee; }
 
 /* PRODUCT */
-
 .product{
     overflow:hidden;
-
     margin-bottom:28px;
-
     border:1px solid #1b3041;
-
     border-radius:22px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #071321,
-        #060d19
-    );
-
-    box-shadow:
-    0 0 25px rgba(0,180,255,.08);
+    background:linear-gradient(180deg,#071321,#060d19);
+    box-shadow:0 0 25px rgba(0,180,255,.08);
 }
 
 .product-image{
     width:100%;
-
     aspect-ratio:1.8;
-
     object-fit:cover;
-
     display:block;
-
     background:#07111d;
 }
 
-.product-body{
-    padding:20px;
-}
+.product-body{ padding:20px; }
 
 .online{
     position:absolute;
-
     top:16px;
     right:16px;
-
     padding:9px 16px;
-
     border-radius:22px;
-
     background:#10ae80;
-
     color:#c8ffed;
-
     font-weight:900;
 }
 
-.image-area{
-    position:relative;
-}
+.image-area{ position:relative; }
 
 .product-title{
     text-align:center;
-
     font-size:21px;
-
     font-weight:900;
-
     line-height:1.4;
-
     margin-bottom:15px;
 }
 
 .chips{
     display:flex;
-
     flex-wrap:wrap;
-
     justify-content:center;
-
     gap:8px;
-
     margin-bottom:15px;
 }
 
 .chip{
     padding:8px 12px;
-
     border-radius:10px;
-
     border:1px solid #07576c;
-
     background:#061e2a;
-
     color:#30b9e8;
-
     font-weight:800;
-
     font-size:14px;
 }
 
 .info-buttons{
     display:flex;
-
     gap:10px;
-
     margin-bottom:12px;
 }
 
 .info-btn{
     flex:1;
-
     min-height:62px;
-
     border-radius:15px;
-
     background:#181326;
-
     border:1px solid #68275e;
-
     color:#ff77bc;
-
     font-weight:900;
-
     cursor:pointer;
 }
 
 .info-btn.blue{
     background:#071b28;
-
     border-color:#0a5c75;
-
     color:#31b9ed;
 }
 
 /* PURCHASE */
-
 .purchase-btn{
     width:100%;
-
     height:65px;
-
     border:0;
-
     border-radius:17px;
-
-    background:
-    linear-gradient(
-        100deg,
-        #0cbbe1,
-        #17c79d
-    );
-
+    background:linear-gradient(100deg,#0cbbe1,#17c79d);
     color:white;
-
     font-size:21px;
-
     font-weight:900;
-
     letter-spacing:1px;
-
     cursor:pointer;
 }
 
 /* PLANS */
-
 .plans{
     display:none;
-
     margin-top:14px;
-
     padding:12px;
-
     border-radius:20px;
-
     border:1px solid #07566c;
-
     background:#030a13;
 }
 
-.plans.open{
-    display:block;
-}
+.plans.open{ display:block; }
 
 .plans-title{
     padding:8px;
-
     border-bottom:1px solid #17313e;
-
     color:#aebbd1;
-
     font-size:18px;
-
     font-weight:900;
 }
 
 .plan{
     display:flex;
-
     align-items:center;
-
     gap:8px;
-
     padding:12px 3px;
-
     border-bottom:1px solid #12303b;
 }
 
-.plan-info{
-    flex:1;
-}
+.plan-info{ flex:1; }
+.plan-name{ font-size:18px; font-weight:900; }
+.plan-price{ color:#19dfc2; font-size:17px; font-weight:900; margin-top:3px; }
 
-.plan-name{
-    font-size:18px;
-
-    font-weight:900;
-}
-
-.plan-price{
-    color:#19dfc2;
-
-    font-size:17px;
-
-    font-weight:900;
-
-    margin-top:3px;
-}
-
-.qty{
-    display:flex;
-
-    align-items:center;
-
-    gap:4px;
-}
-
+.qty{ display:flex; align-items:center; gap:4px; }
 .qty button{
     width:38px;
     height:38px;
-
     border-radius:9px;
-
     border:1px solid #087485;
-
     background:#06212a;
-
     color:#0de6f5;
-
     font-size:22px;
-
     font-weight:900;
+    cursor:pointer;
 }
 
-.qty-number{
-    min-width:22px;
-
-    text-align:center;
-
-    font-weight:900;
-}
+.qty-number{ min-width:22px; text-align:center; font-weight:900; }
 
 .get-btn{
     height:44px;
-
     padding:0 17px;
-
     border:0;
-
     border-radius:10px;
-
     background:#ed3e78;
-
     color:white;
-
     font-weight:900;
-
     cursor:pointer;
 }
 
 /* BOTTOM NAV */
-
 .bottom-nav{
     position:fixed;
-
     bottom:0;
     left:50%;
-
     transform:translateX(-50%);
-
     width:min(720px,100%);
-
     height:88px;
-
     z-index:100;
-
     display:grid;
-
     grid-template-columns:repeat(6,1fr);
-
     background:rgba(6,8,21,.97);
-
     border-top:1px solid #19324b;
 }
 
 .nav-btn{
     border:0;
-
     background:transparent;
-
     color:#8290a8;
-
     font-size:12px;
-
     font-weight:900;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
-
     gap:5px;
-
     cursor:pointer;
 }
 
-.nav-icon{
-    font-size:25px;
-}
-
-.nav-btn.active{
-    color:#12d7ed;
-}
+.nav-icon{ font-size:25px; }
+.nav-btn.active{ color:#12d7ed; }
 
 /* PAGES */
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-}
+.page{ display:none; }
+.page.active{ display:block; }
 
 /* ADMIN */
-
-.admin{
-    padding:25px 22px;
-}
-
-.admin h2{
-    font-size:30px;
-
-    margin:0 0 20px;
-}
+.admin{ padding:25px 22px; }
+.admin h2{ font-size:30px; margin:0 0 20px; }
 
 .admin-card{
     padding:18px;
-
     margin-bottom:18px;
-
     border-radius:20px;
-
     border:1px solid #19384d;
-
     background:#07111d;
 }
 
-.admin-card h3{
-    margin-top:0;
-}
+.admin-card h3{ margin-top:0; }
 
-.input-group{
-    margin-bottom:14px;
-}
-
+.input-group{ margin-bottom:14px; }
 .input-group label{
     display:block;
-
     margin-bottom:7px;
-
     color:#aebdd5;
-
     font-weight:900;
 }
 
-.input-group input,
-.input-group textarea{
+.input-group input, .input-group textarea{
     width:100%;
-
     border:1px solid #294256;
-
     border-radius:12px;
-
     background:#020810;
-
     color:white;
-
     padding:13px;
-
     outline:none;
 }
 
-.input-group textarea{
-    min-height:80px;
-
-    resize:vertical;
-}
+.input-group textarea{ min-height:80px; resize:vertical; }
 
 .admin-main-btn{
     padding:13px 18px;
-
     border:0;
-
     border-radius:12px;
-
-    background:linear-gradient(
-        100deg,
-        #0cbbe1,
-        #17c79d
-    );
-
+    background:linear-gradient(100deg,#0cbbe1,#17c79d);
     color:white;
-
     font-weight:900;
-
     cursor:pointer;
 }
 
 .admin-product{
     padding:13px;
-
     margin-top:12px;
-
     border-radius:15px;
-
     border:1px solid #1b374c;
-
     background:#050c16;
 }
 
-.admin-product-head{
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-}
-
-.admin-product img{
-    width:70px;
-
-    height:50px;
-
-    object-fit:cover;
-
-    border-radius:8px;
-}
-
-.admin-product-info{
-    flex:1;
-}
+.admin-product-head{ display:flex; align-items:center; gap:12px; }
+.admin-product img{ width:70px; height:50px; object-fit:cover; border-radius:8px; }
+.admin-product-info{ flex:1; }
 
 .delete-btn{
     border:0;
-
     border-radius:9px;
-
-    padding:9px;
-
+    padding:8px 12px;
     background:#481328;
-
     color:#ff9bb9;
-
     font-weight:900;
-
     cursor:pointer;
 }
 
 .plan-editor{
     margin-top:14px;
-
     padding-top:12px;
-
     border-top:1px solid #183448;
 }
 
-.plan-row{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:8px 0;
-
-    color:#cbd7e8;
-}
-
-.add-plan{
-    display:flex;
-
-    gap:7px;
-
+.plan-card{
+    padding:12px;
     margin-top:10px;
+    border-radius:12px;
+    border:1px solid #183448;
+    background:#030a13;
 }
 
+.add-plan{ display:flex; gap:7px; margin-top:10px; }
 .add-plan input{
     min-width:0;
-
     flex:1;
-
     padding:10px;
-
     border-radius:9px;
-
     border:1px solid #284153;
-
     background:#020811;
-
     color:white;
 }
 
 .add-plan button{
     border:0;
-
     border-radius:9px;
-
     background:#123d4d;
-
     color:#2ce0f2;
-
     font-weight:900;
-
     padding:10px;
+    cursor:pointer;
 }
 
 /* MODAL */
-
 .modal{
     display:none;
-
     position:fixed;
-
     inset:0;
-
     z-index:200;
-
     background:rgba(0,0,0,.75);
-
     align-items:flex-end;
-
     justify-content:center;
 }
 
-.modal.show{
-    display:flex;
-}
-
+.modal.show{ display:flex; }
 .modal-box{
     width:min(720px,100%);
-
     padding:22px;
-
     border-radius:25px 25px 0 0;
-
     background:#07111d;
-
     border:1px solid #1c3d52;
 }
 
-.modal-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-}
-
+.modal-header{ display:flex; justify-content:space-between; align-items:center; }
 .close{
     width:42px;
     height:42px;
-
     border:0;
-
     border-radius:50%;
-
     background:#172337;
-
     color:white;
-
     font-size:23px;
+    cursor:pointer;
 }
 
 .modal-balance{
     text-align:center;
-
     font-size:34px;
-
     color:#16dfc2;
-
     font-weight:900;
-
     margin:15px;
 }
 
-/* MOBILE */
+/* COPY BUTTON */
+.copy-btn{
+    margin-top:8px;
+    padding:8px 14px;
+    border:0;
+    border-radius:8px;
+    background:#0a5c75;
+    color:#2ce0f2;
+    font-weight:bold;
+    cursor:pointer;
+}
 
 @media(max-width:430px){
-
-    .topbar{
-        padding:13px 12px;
-    }
-
-    .top-btn{
-        font-size:15px;
-    }
-
-    .content{
-        padding:27px 20px;
-    }
-
-    .page-title{
-        font-size:31px;
-    }
-
-    .product-body{
-        padding:15px;
-    }
-
-    .product-title{
-        font-size:18px;
-    }
-
-    .chip{
-        font-size:12px;
-    }
-
-    .plan-name{
-        font-size:16px;
-    }
-
-    .get-btn{
-        padding:0 13px;
-    }
+    .topbar{ padding:13px 12px; }
+    .top-btn{ font-size:15px; }
+    .content{ padding:27px 20px; }
+    .page-title{ font-size:31px; }
+    .product-body{ padding:15px; }
+    .product-title{ font-size:18px; }
+    .chip{ font-size:12px; }
+    .plan-name{ font-size:16px; }
+    .get-btn{ padding:0 13px; }
 }
 </style>
 </head>
@@ -1777,1713 +441,483 @@ body{
 <div class="app">
 
 <!-- TOP BAR -->
-
 <header class="topbar">
-
-<button class="top-btn" onclick="showPage('store')">
-🔷 Store
-</button>
-
-<button class="top-btn balance">
-💳 ₹<span id="balance">35.00</span>
-</button>
-
-<button class="top-btn topup" onclick="openTopup()">
-⚡ TOP UP
-</button>
-
+<button class="top-btn" onclick="showPage('store')">🔷 Store</button>
+<button class="top-btn balance">💳 ₹<span id="balance">35.00</span></button>
+<button class="top-btn topup" onclick="openTopup()">⚡ TOP UP</button>
 </header>
 
-
-<!-- ================= STORE ================= -->
-
+<!-- STORE PAGE -->
 <section id="store" class="page active">
-
 <div class="content">
-
-<h1 class="page-title">
-Browse Products
-</h1>
-
-<div class="breadcrumb">
-&gt;&gt; MARKETPLACE /
-<span> USER STOCK</span>
-</div>
-
+<h1 class="page-title">Browse Products</h1>
+<div class="breadcrumb">&gt;&gt; MARKETPLACE / <span> USER STOCK</span></div>
 <div id="products"></div>
-
 </div>
-
 </section>
 
-
-<!-- ================= MY KEYS ================= -->
-
+<!-- MY KEYS PAGE -->
 <section id="keys" class="page">
-
 <div class="content">
-
-<h1 class="page-title">
-🔑 My Keys
-</h1>
-
-<div id="keysList">
-No purchased keys yet.
+<h1 class="page-title">🔑 My Keys</h1>
+<div id="keysList">No purchased keys yet.</div>
 </div>
-
-</div>
-
 </section>
 
-
-<!-- ================= DEPOSIT ================= -->
-
+<!-- DEPOSIT PAGE -->
 <section id="deposit" class="page">
-
 <div class="content">
-
-<h1 class="page-title">
-💰 Deposit
-</h1>
-
+<h1 class="page-title">💰 Deposit</h1>
 <div class="admin-card">
-
-<p>
-Current balance:
-</p>
-
-<h2 style="color:#15dfc2">
-₹<span id="depositBalance">35.00</span>
-</h2>
-
-<button
-class="admin-main-btn"
-onclick="openTopup()">
-
-⚡ ADD BALANCE
-
-</button>
-
+<p>Current balance:</p>
+<h2 style="color:#15dfc2">₹<span id="depositBalance">35.00</span></h2>
+<button class="admin-main-btn" onclick="openTopup()">⚡ ADD BALANCE</button>
 </div>
-
 </div>
-
 </section>
 
-
-<!-- ================= HISTORY ================= -->
-
+<!-- HISTORY PAGE -->
 <section id="history" class="page">
-
 <div class="content">
-
-<h1 class="page-title">
-📜 History
-</h1>
-
-<div id="historyList">
-No transactions yet.
+<h1 class="page-title">📜 History</h1>
+<div id="historyList">No transactions yet.</div>
 </div>
-
-</div>
-
 </section>
 
-
-<!-- ================= API ================= -->
-
+<!-- API PAGE -->
 <section id="api" class="page">
-
 <div class="content">
-
-<h1 class="page-title">
-🔌 API
-</h1>
-
+<h1 class="page-title">🔌 API</h1>
 <div class="admin-card">
-
-<p>
-API section.
-</p>
-
-<p style="color:#8190aa">
-Connect your real backend API here.
-</p>
-
+<p>API Integration</p>
+<p style="color:#8190aa">Connect your real backend API here.</p>
 </div>
-
 </div>
-
 </section>
 
-
-<!-- ================= PROFILE ================= -->
-
+<!-- PROFILE PAGE -->
 <section id="profile" class="page">
-
 <div class="content">
-
-<h1 class="page-title">
-👤 Profile
-</h1>
-
+<h1 class="page-title">👤 Profile</h1>
 <div class="admin-card">
-
-<h3>
-KP PANEL SHOP
-</h3>
-
-<p style="color:#8c9bb2">
-Store account dashboard
-</p>
-
-<button
-class="admin-main-btn"
-onclick="openAdmin()">
-
-⚙️ ADMIN PANEL
-
-</button>
-
+<h3>KP PANEL SHOP</h3>
+<p style="color:#8c9bb2">Store account dashboard</p>
+<button class="admin-main-btn" onclick="openAdmin()">⚙️ ADMIN PANEL</button>
 </div>
-
 </div>
-
 </section>
 
-
-<!-- ================= ADMIN ================= -->
-
+<!-- ADMIN PAGE -->
 <section id="admin" class="page">
-
 <div class="admin">
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-">
-
-<h2>
-⚙️ Admin Panel
-</h2>
-
-<button
-class="close"
-onclick="showPage('profile')">
-×
-</button>
-
+<div style="display:flex;justify-content:space-between;align-items:center;">
+<h2>⚙️ Admin Panel</h2>
+<button class="close" onclick="showPage('profile')">×</button>
 </div>
-
 
 <!-- ADD PRODUCT -->
-
 <div class="admin-card">
-
-<h3>
-➕ Add Product
-</h3>
-
+<h3>➕ Add Product</h3>
 <div class="input-group">
-
-<label>
-Product Name
-</label>
-
-<input
-id="productName"
-placeholder="Enter product name">
-
+<label>Product Name</label>
+<input id="productName" placeholder="Enter product name">
 </div>
-
-
 <div class="input-group">
-
-<label>
-Description
-</label>
-
-<textarea
-id="productDescription"
-placeholder="Enter description"></textarea>
-
+<label>Description</label>
+<textarea id="productDescription" placeholder="Enter description"></textarea>
 </div>
-
-
 <div class="input-group">
-
-<label>
-Product Image URL
-</label>
-
-<input
-id="productImage"
-placeholder="https://example.com/image.jpg">
-
+<label>Product Image URL</label>
+<input id="productImage" placeholder="https://example.com/image.jpg">
+</div>
+<button class="admin-main-btn" onclick="addProduct()">ADD PRODUCT</button>
 </div>
 
-
-<button
-class="admin-main-btn"
-onclick="addProduct()">
-
-ADD PRODUCT
-
-</button>
-
-</div>
-
-
-<!-- ADMIN PRODUCTS -->
-
+<!-- ADMIN PRODUCTS LIST -->
 <div class="admin-card">
-
-<h3>
-📦 Products & Plans
-</h3>
-
+<h3>📦 Products & Plans</h3>
 <div id="adminProducts"></div>
-
 </div>
-
 </div>
-
 </section>
 
-
-<!-- ================= BOTTOM NAV ================= -->
-
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-
-<button
-class="nav-btn active"
-id="nav-store"
-onclick="showPage('store')">
-
-<span class="nav-icon">🏪</span>
-Store
-
-</button>
-
-
-<button
-class="nav-btn"
-id="nav-keys"
-onclick="showPage('keys')">
-
-<span class="nav-icon">🔑</span>
-My Keys
-
-</button>
-
-
-<button
-class="nav-btn"
-id="nav-deposit"
-onclick="showPage('deposit')">
-
-<span class="nav-icon">🟢</span>
-Deposit
-
-</button>
-
-
-<button
-class="nav-btn"
-id="nav-history"
-onclick="showPage('history')">
-
-<span class="nav-icon">📱</span>
-History
-
-</button>
-
-
-<button
-class="nav-btn"
-id="nav-api"
-onclick="showPage('api')">
-
-<span class="nav-icon">⬆️</span>
-API
-
-</button>
-
-
-<button
-class="nav-btn"
-id="nav-profile"
-onclick="showPage('profile')">
-
-<span class="nav-icon">👤</span>
-Profile
-
-</button>
-
+<button class="nav-btn active" id="nav-store" onclick="showPage('store')"><span class="nav-icon">🏪</span>Store</button>
+<button class="nav-btn" id="nav-keys" onclick="showPage('keys')"><span class="nav-icon">🔑</span>My Keys</button>
+<button class="nav-btn" id="nav-deposit" onclick="showPage('deposit')"><span class="nav-icon">🟢</span>Deposit</button>
+<button class="nav-btn" id="nav-history" onclick="showPage('history')"><span class="nav-icon">📱</span>History</button>
+<button class="nav-btn" id="nav-api" onclick="showPage('api')"><span class="nav-icon">⬆️</span>API</button>
+<button class="nav-btn" id="nav-profile" onclick="showPage('profile')"><span class="nav-icon">👤</span>Profile</button>
 </nav>
 
-
-<!-- ================= TOPUP MODAL ================= -->
-
-<div
-id="topupModal"
-class="modal">
-
+<!-- TOPUP MODAL -->
+<div id="topupModal" class="modal">
 <div class="modal-box">
-
 <div class="modal-header">
-
-<h2>
-⚡ TOP UP
-</h2>
-
-<button
-class="close"
-onclick="closeTopup()">
-
-×
-
-</button>
-
+<h2>⚡ TOP UP</h2>
+<button class="close" onclick="closeTopup()">×</button>
 </div>
-
-
-<div class="modal-balance">
-
-₹<span id="modalBalance">
-35.00
-</span>
-
-</div>
-
-
+<div class="modal-balance">₹<span id="modalBalance">35.00</span></div>
 <div class="input-group">
-
-<label>
-Amount ₹
-</label>
-
-<input
-id="topupAmount"
-type="number"
-min="1"
-value="100">
-
+<label>Amount ₹</label>
+<input id="topupAmount" type="number" min="1" value="100">
 </div>
-
-
-<button
-class="admin-main-btn"
-style="width:100%"
-onclick="addBalance()">
-
-ADD BALANCE
-
-</button>
-
+<button class="admin-main-btn" style="width:100%" onclick="addBalance()">ADD BALANCE</button>
+</div>
 </div>
 
 </div>
-
-
-</div>
-
 
 <script>
-
-/* =========================================
-   STORAGE
-========================================= */
-
+/* STORAGE KEYS */
 const PRODUCT_KEY = "kp_products";
-
 const BALANCE_KEY = "kp_balance";
-
 const KEYS_KEY = "kp_keys";
-
 const HISTORY_KEY = "kp_history";
 
-
-/* =========================================
-   DEFAULT PRODUCTS
-========================================= */
-
-const defaultProducts = [
-
-{
-    id:"product_1",
-
-    name:"DIGITAL PRODUCT",
-
-    description:"Premium digital product",
-
-    image:"",
-
-    plans:[
-        {
-            name:"1 Hours",
-            price:8
-        },
-
-        {
-            name:"2 Hours",
-            price:16
-        },
-
-        {
-            name:"3 Hours",
-            price:24
-        },
-
-        {
-            name:"4 Hours",
-            price:32
-        },
-
-        {
-            name:"5 Hours",
-            price:40
-        }
+/* DEFAULT DATA */
+const defaultProducts = [{
+    id: "product_1",
+    name: "DIGITAL PANEL",
+    description: "Premium panel digital keys",
+    image: "",
+    plans: [
+        { name: "1 Hour", price: 8, keys: ["KP-TESTKEY-1", "KP-TESTKEY-2"] },
+        { name: "2 Hours", price: 16, keys: [] }
     ]
-}
+}];
 
-];
+let products = loadData(PRODUCT_KEY, defaultProducts);
+let balance = Number(localStorage.getItem(BALANCE_KEY) || 35);
+let keys = loadData(KEYS_KEY, []);
+let history = loadData(HISTORY_KEY, []);
 
-
-/* =========================================
-   LOAD DATA
-========================================= */
-
-let products =
-loadData(PRODUCT_KEY,defaultProducts);
-
-let balance =
-Number(
-localStorage.getItem(BALANCE_KEY) || 35
-);
-
-let keys =
-loadData(KEYS_KEY,[]);
-
-let history =
-loadData(HISTORY_KEY,[]);
-
-
-/* =========================================
-   LOAD FUNCTION
-========================================= */
-
-function loadData(key,fallback){
-
+function loadData(key, fallback){
     try{
-
-        const data =
-        localStorage.getItem(key);
-
-        return data
-        ? JSON.parse(data)
-        : fallback;
-
-    }catch(error){
-
-        return fallback;
-
-    }
-
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : fallback;
+    }catch(error){ return fallback; }
 }
-
-
-/* =========================================
-   SAVE
-========================================= */
 
 function saveData(){
-
-    localStorage.setItem(
-        PRODUCT_KEY,
-        JSON.stringify(products)
-    );
-
-    localStorage.setItem(
-        BALANCE_KEY,
-        balance
-    );
-
-    localStorage.setItem(
-        KEYS_KEY,
-        JSON.stringify(keys)
-    );
-
-    localStorage.setItem(
-        HISTORY_KEY,
-        JSON.stringify(history)
-    );
-
+    localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
+    localStorage.setItem(BALANCE_KEY, balance);
+    localStorage.setItem(KEYS_KEY, JSON.stringify(keys));
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
 }
-
-
-/* =========================================
-   PAGE NAVIGATION
-========================================= */
 
 function showPage(page){
-
-    document
-    .querySelectorAll(".page")
-    .forEach(function(x){
-
-        x.classList.remove("active");
-
-    });
-
-
-    document
-    .getElementById(page)
-    .classList.add("active");
-
-
-    document
-    .querySelectorAll(".nav-btn")
-    .forEach(function(x){
-
-        x.classList.remove("active");
-
-    });
-
-
-    const nav =
-    document.getElementById("nav-"+page);
-
-
-    if(nav){
-
-        nav.classList.add("active");
-
-    }
-
-
+    document.querySelectorAll(".page").forEach(x => x.classList.remove("active"));
+    document.getElementById(page).classList.add("active");
+    document.querySelectorAll(".nav-btn").forEach(x => x.classList.remove("active"));
+    const nav = document.getElementById("nav-"+page);
+    if(nav) nav.classList.add("active");
     window.scrollTo(0,0);
-
-
     render();
-
 }
-
-
-/* =========================================
-   RENDER STORE
-========================================= */
 
 function render(){
-
     updateBalance();
-
     renderProducts();
-
     renderAdmin();
-
     renderKeys();
-
     renderHistory();
-
 }
-
-
-/* =========================================
-   BALANCE
-========================================= */
 
 function updateBalance(){
-
-    document.getElementById(
-        "balance"
-    ).textContent =
-    balance.toFixed(2);
-
-
-    document.getElementById(
-        "depositBalance"
-    ).textContent =
-    balance.toFixed(2);
-
-
-    document.getElementById(
-        "modalBalance"
-    ).textContent =
-    balance.toFixed(2);
-
+    document.getElementById("balance").textContent = balance.toFixed(2);
+    document.getElementById("depositBalance").textContent = balance.toFixed(2);
+    document.getElementById("modalBalance").textContent = balance.toFixed(2);
 }
-
-
-/* =========================================
-   STORE PRODUCTS
-========================================= */
 
 function renderProducts(){
-
-    const container =
-    document.getElementById("products");
-
-
+    const container = document.getElementById("products");
     if(!container) return;
-
-
-    container.innerHTML="";
-
+    container.innerHTML = "";
 
     products.forEach(function(product){
+        const article = document.createElement("article");
+        article.className = "product";
+        const image = product.image || "https://via.placeholder.com/900x500/071321/13cbea?text=KP+PANEL+SHOP";
 
-        const article =
-        document.createElement("article");
-
-
-        article.className="product";
-
-
-        const image =
-        product.image ||
-        "https://via.placeholder.com/900x500/071321/13cbea?text=KP+PANEL+SHOP";
-
-
-        article.innerHTML=`
-
+        article.innerHTML = `
         <div class="image-area">
-
-            <img
-            class="product-image"
-            src="${image}"
-            alt="Product">
-
-            <div class="online">
-                ● ONLINE
-            </div>
-
+            <img class="product-image" src="${image}" alt="Product">
+            <div class="online">● ONLINE</div>
         </div>
-
-
         <div class="product-body">
-
-            <div class="product-title">
-
-                ✨🔥 ${escapeHTML(product.name)} ❤️✨
-
-            </div>
-
-
+            <div class="product-title">✨🔥 ${escapeHTML(product.name)} ❤️✨</div>
             <div class="chips">
-
-                <div class="chip">
-                    ⚡ 🎯 Feature 1
-                </div>
-
-                <div class="chip">
-                    ⚡ 🎯 Feature 2
-                </div>
-
-                <div class="chip">
-                    ⚡ 📍 Feature 3
-                </div>
-
-                <div class="chip">
-                    ⚡ 📱 Device Support
-                </div>
-
+                <div class="chip">⚡ 🎯 Auto Update</div>
+                <div class="chip">⚡ 📍 Safe Key</div>
+                <div class="chip">⚡ 📱 All Devices</div>
             </div>
-
-
             <div class="info-buttons">
-
-                <button
-                class="info-btn"
-                onclick="showMessage('Update information')">
-
-                    ⭐ UPDATE FILE ⭐
-
-                </button>
-
-
-                <button
-                class="info-btn blue"
-                onclick="showMessage('Setup information')">
-
-                    ⭐ SET UP VIDEO ⭐
-
-                </button>
-
+                <button class="info-btn" onclick="alert('Files Updated!')">⭐ UPDATE FILE ⭐</button>
+                <button class="info-btn blue" onclick="alert('Check Setup Guide Video')">⭐ SET UP VIDEO ⭐</button>
             </div>
-
-
-            <button
-            class="purchase-btn"
-            onclick="togglePlans('${product.id}')">
-
-                PURCHASE KEY 🔑
-
-            </button>
-
-
-            <div
-            class="plans"
-            id="plans-${product.id}">
-
-                <div class="plans-title">
-
-                    ◇ CHOOSE PLAN & QUANTITY
-
-                </div>
-
-                ${
-                    product.plans.length
-                    ?
-                    product.plans
-                    .map(function(plan,index){
-
-                        return createPlanHTML(
-                            product.id,
-                            plan,
-                            index
-                        );
-
-                    }).join("")
-                    :
-                    `<div style="
-                    padding:20px;
-                    text-align:center;
-                    color:#7e8ca5">
-
-                        Admin has not added any plans.
-
-                    </div>`
-                }
-
+            <button class="purchase-btn" onclick="togglePlans('${product.id}')">PURCHASE KEY 🔑</button>
+            <div class="plans" id="plans-${product.id}">
+                <div class="plans-title">◇ CHOOSE PLAN & QUANTITY</div>
+                ${product.plans.length ? product.plans.map((p,i) => createPlanHTML(product.id, p, i)).join("") : '<div style="padding:15px;text-align:center;color:#7e8ca5">No plans available.</div>'}
             </div>
-
-        </div>
-
-        `;
-
-
+        </div>`;
         container.appendChild(article);
-
     });
-
 }
 
-
-/* =========================================
-   PLAN HTML
-========================================= */
-
-function createPlanHTML(
-    productId,
-    plan,
-    index
-){
-
+function createPlanHTML(productId, plan, index){
     return `
-
     <div class="plan">
-
         <div class="plan-info">
-
-            <div class="plan-name">
-                ${escapeHTML(plan.name)}
-            </div>
-
-            <div class="plan-price">
-                ₹${Number(plan.price).toFixed(2)}
-            </div>
-
+            <div class="plan-name">${escapeHTML(plan.name)}</div>
+            <div class="plan-price">₹${Number(plan.price).toFixed(2)}</div>
+            <small style="color:#7d8ea7">Stock: ${plan.keys ? plan.keys.length : 0} Keys</small>
         </div>
-
-
         <div class="qty">
-
-            <button
-            onclick="changeQty(this,-1)">
-                −
-            </button>
-
-            <span class="qty-number">
-                1
-            </span>
-
-            <button
-            onclick="changeQty(this,1)">
-                +
-            </button>
-
+            <button onclick="changeQty(this,-1)">−</button>
+            <span class="qty-number">1</span>
+            <button onclick="changeQty(this,1)">+</button>
         </div>
-
-
-        <button
-        class="get-btn"
-        onclick="
-        buyPlan(
-            '${productId}',
-            ${index},
-            this
-        )">
-
-            GET
-
-        </button>
-
-    </div>
-
-    `;
-
+        <button class="get-btn" onclick="buyPlan('${productId}', ${index}, this)">GET</button>
+    </div>`;
 }
-
-
-/* =========================================
-   OPEN PLANS
-========================================= */
 
 function togglePlans(id){
-
-    const plans =
-    document.getElementById(
-        "plans-"+id
-    );
-
-
-    if(plans){
-
-        plans.classList.toggle("open");
-
-    }
-
+    const plans = document.getElementById("plans-"+id);
+    if(plans) plans.classList.toggle("open");
 }
 
-
-/* =========================================
-   QUANTITY
-========================================= */
-
-function changeQty(
-    button,
-    amount
-){
-
-    const number =
-    button.parentElement
-    .querySelector(".qty-number");
-
-
-    let value =
-    Number(number.textContent);
-
-
-    value += amount;
-
-
-    if(value < 1){
-
-        value=1;
-
-    }
-
-
-    number.textContent=value;
-
+function changeQty(button, amount){
+    const number = button.parentElement.querySelector(".qty-number");
+    let val = Number(number.textContent) + amount;
+    if(val < 1) val = 1;
+    number.textContent = val;
 }
 
-
-/* =========================================
-   BUY PLAN
-========================================= */
-
-function buyPlan(
-    productId,
-    planIndex,
-    button
-){
-
-    const product =
-    products.find(function(p){
-
-        return p.id===productId;
-
-    });
-
-
+function buyPlan(productId, planIndex, button){
+    const product = products.find(p => p.id === productId);
     if(!product) return;
-
-
-    const plan =
-    product.plans[planIndex];
-
-
+    const plan = product.plans[planIndex];
     if(!plan) return;
+    if(!plan.keys) plan.keys = [];
 
+    const quantity = Number(button.parentElement.querySelector(".qty-number").textContent);
 
-    const quantity =
-    Number(
-        button
-        .parentElement
-        .querySelector(".qty-number")
-        .textContent
-    );
-
-
-    const total =
-    Number(plan.price) * quantity;
-
-
-    if(balance < total){
-
-        alert(
-            "Insufficient balance.\n\nPlease use TOP UP first."
-        );
-
-        openTopup();
-
+    if(plan.keys.length < quantity){
+        alert(`Insufficient stock! Available keys: ${plan.keys.length}`);
         return;
-
     }
 
+    const total = Number(plan.price) * quantity;
+    if(balance < total){
+        alert("Insufficient balance. Please TOP UP.");
+        openTopup();
+        return;
+    }
 
+    const purchasedKeys = plan.keys.splice(0, quantity);
     balance -= total;
 
-
-    for(
-        let i=0;
-        i<quantity;
-        i++
-    ){
-
+    purchasedKeys.forEach(key => {
         keys.unshift({
-
-            id:
-            "KP-"+
-
-            Math.random()
-            .toString(36)
-            .substring(2,9)
-            .toUpperCase(),
-
-            product:product.name,
-
-            plan:plan.name,
-
-            date:
-            new Date()
-            .toLocaleString()
-
+            id: key,
+            product: product.name,
+            plan: plan.name,
+            date: new Date().toLocaleString()
         });
-
-    }
-
+    });
 
     history.unshift({
-
-        type:"Purchase",
-
-        product:product.name,
-
-        plan:plan.name,
-
-        amount:total,
-
-        date:
-        new Date()
-        .toLocaleString()
-
+        type: "Purchase",
+        product: product.name,
+        plan: plan.name,
+        amount: total,
+        date: new Date().toLocaleString()
     });
 
-
     saveData();
-
     render();
 
-
-    alert(
-        "Purchase successful!\n\n"+
-        "₹"+total.toFixed(2)+
-        " deducted."
-    );
-
+    alert(`Purchase Successful! 🎉\n\nKeys:\n${purchasedKeys.join("\n")}\n\nSaved to 'My Keys'.`);
 }
 
-
-/* =========================================
-   ADMIN
-========================================= */
-
-function openAdmin(){
-
-    showPage("admin");
-
-}
-
-
-/* =========================================
-   ADD PRODUCT
-========================================= */
+/* ADMIN LOGIC */
+function openAdmin(){ showPage("admin"); }
 
 function addProduct(){
+    const name = document.getElementById("productName").value.trim();
+    const description = document.getElementById("productDescription").value.trim();
+    const image = document.getElementById("productImage").value.trim();
 
-    const name =
-    document
-    .getElementById("productName")
-    .value
-    .trim();
+    if(!name){ alert("Product name required."); return; }
 
-
-    const description =
-    document
-    .getElementById("productDescription")
-    .value
-    .trim();
-
-
-    const image =
-    document
-    .getElementById("productImage")
-    .value
-    .trim();
-
-
-    if(!name){
-
-        alert(
-            "Product name required."
-        );
-
-        return;
-
-    }
-
-
-    products.push({
-
-        id:
-        "product_"+Date.now(),
-
-        name:name,
-
-        description:
-        description,
-
-        image:image,
-
-        plans:[]
-
-    });
-
-
+    products.push({ id: "product_"+Date.now(), name, description, image, plans: [] });
     saveData();
-
-
-    document
-    .getElementById("productName")
-    .value="";
-
-
-    document
-    .getElementById("productDescription")
-    .value="";
-
-
-    document
-    .getElementById("productImage")
-    .value="";
-
-
+    document.getElementById("productName").value = "";
+    document.getElementById("productDescription").value = "";
+    document.getElementById("productImage").value = "";
     render();
-
-
-    alert(
-        "Product added successfully!"
-    );
-
+    alert("Product added successfully!");
 }
 
-
-/* =========================================
-   ADMIN PRODUCT LIST
-========================================= */
-
 function renderAdmin(){
-
-    const container =
-    document.getElementById(
-        "adminProducts"
-    );
-
-
+    const container = document.getElementById("adminProducts");
     if(!container) return;
+    container.innerHTML = "";
 
+    products.forEach((product, productIndex) => {
+        const div = document.createElement("div");
+        div.className = "admin-product";
 
-    container.innerHTML="";
-
-
-    products.forEach(function(
-        product,
-        productIndex
-    ){
-
-        const div =
-        document.createElement("div");
-
-
-        div.className=
-        "admin-product";
-
-
-        div.innerHTML=`
-
+        div.innerHTML = `
         <div class="admin-product-head">
-
-            <img
-            src="${
-                product.image ||
-                'https://via.placeholder.com/150'
-            }">
-
+            <img src="${product.image || 'https://via.placeholder.com/150'}">
             <div class="admin-product-info">
-
-                <b>
-                    ${escapeHTML(product.name)}
-                </b>
-
-                <small style="
-                display:block;
-                color:#8190a8;
-                margin-top:5px">
-
-                    ${product.plans.length}
-                    plans
-
-                </small>
-
+                <b>${escapeHTML(product.name)}</b>
+                <small style="display:block;color:#8190a8;margin-top:3px">${product.plans.length} plans</small>
             </div>
-
-
-            <button
-            class="delete-btn"
-            onclick="
-            deleteProduct(${productIndex})
-            ">
-
-                DELETE
-
-            </button>
-
+            <button class="delete-btn" onclick="deleteProduct(${productIndex})">DELETE</button>
         </div>
-
-
         <div class="plan-editor">
-
-            <b>
-                Plans
-            </b>
-
-            <div
-            id="admin-plans-${product.id}">
-            </div>
-
-
+            <b>Plans & Keys</b>
+            <div id="admin-plans-${product.id}"></div>
             <div class="add-plan">
-
-                <input
-                id="plan-name-${product.id}"
-                placeholder="Plan e.g. 6 Hours">
-
-
-                <input
-                id="plan-price-${product.id}"
-                type="number"
-                min="0"
-                placeholder="₹ Price">
-
-
-                <button
-                onclick="
-                addPlan('${product.id}')
-                ">
-
-                    ADD
-
-                </button>
-
+                <input id="plan-name-${product.id}" placeholder="Plan e.g. 1 Hour">
+                <input id="plan-price-${product.id}" type="number" min="0" placeholder="₹ Price">
+                <button onclick="addPlan('${product.id}')">ADD PLAN</button>
             </div>
-
-        </div>
-
-        `;
-
+        </div>`;
 
         container.appendChild(div);
 
-
-        const planBox =
-        document.getElementById(
-            "admin-plans-"+product.id
-        );
-
-
-        product.plans.forEach(
-            function(plan,index){
-
-                const row =
-                document.createElement("div");
-
-
-                row.className=
-                "plan-row";
-
-
-                row.innerHTML=`
-
-                <span>
-
-                    ${escapeHTML(plan.name)}
-                    —
-                    ₹${Number(plan.price).toFixed(2)}
-
-                </span>
-
-
-                <button
-                class="delete-btn"
-                onclick="
-                deletePlan(
-                    '${product.id}',
-                    ${index}
-                )
-                ">
-
-                    ×
-
-                </button>
-
-                `;
-
-
-                planBox.appendChild(row);
-
-            }
-        );
-
+        const planBox = document.getElementById("admin-plans-"+product.id);
+        product.plans.forEach((plan, index) => {
+            if(!plan.keys) plan.keys = [];
+            const planCard = document.createElement("div");
+            planCard.className = "plan-card";
+            planCard.innerHTML = `
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div>
+                    <b>${escapeHTML(plan.name)}</b>
+                    <div style="color:#18dfc2;margin-top:4px;font-weight:900;">₹${Number(plan.price).toFixed(2)}</div>
+                    <small style="color:#8190a8;display:block;margin-top:2px;">🔑 ${plan.keys.length} Keys Available</small>
+                </div>
+                <button class="delete-btn" onclick="deletePlan('${product.id}', ${index})">DELETE</button>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:10px;">
+                <input id="key-${product.id}-${index}" placeholder="Enter Key" style="flex:1;padding:10px;border-radius:9px;border:1px solid #284153;background:#020811;color:white;outline:none;" onkeypress="if(event.key==='Enter') addKey('${product.id}', ${index})">
+                <button onclick="addKey('${product.id}', ${index})" style="padding:10px 14px;border:0;border-radius:9px;background:#123d4d;color:#2ce0f2;font-weight:900;cursor:pointer;">+ KEY</button>
+            </div>`;
+            planBox.appendChild(planCard);
+        });
     });
-
 }
-
-
-/* =========================================
-   ADD PLAN
-========================================= */
 
 function addPlan(productId){
+    const name = document.getElementById("plan-name-"+productId).value.trim();
+    const price = Number(document.getElementById("plan-price-"+productId).value);
 
-    const name =
-    document
-    .getElementById(
-        "plan-name-"+productId
-    )
-    .value
-    .trim();
+    if(!name || isNaN(price) || price < 0){ alert("Enter valid plan name & price."); return; }
 
-
-    const price =
-    Number(
-        document
-        .getElementById(
-            "plan-price-"+productId
-        )
-        .value
-    );
-
-
-    if(!name){
-
-        alert(
-            "Plan name required."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        !Number.isFinite(price) ||
-        price < 0
-    ){
-
-        alert(
-            "Enter a valid price."
-        );
-
-        return;
-
-    }
-
-
-    const product =
-    products.find(function(p){
-
-        return p.id===productId;
-
-    });
-
-
+    const product = products.find(p => p.id === productId);
     if(!product) return;
 
-
-    product.plans.push({
-
-        name:name,
-
-        price:price
-
-    });
-
-
+    product.plans.push({ name, price, keys: [] });
     saveData();
-
     render();
-
-
-    alert(
-        "Plan added!\n\n"+
-        "It will now appear in Store."
-    );
-
 }
 
+function addKey(productId, planIndex){
+    const input = document.getElementById(`key-${productId}-${planIndex}`);
+    const rawText = input.value.trim();
+    if(!rawText){ alert("Key enter karo"); return; }
 
-/* =========================================
-   DELETE PLAN
-========================================= */
-
-function deletePlan(
-    productId,
-    planIndex
-){
-
-    const product =
-    products.find(function(p){
-
-        return p.id===productId;
-
-    });
-
-
+    const product = products.find(p => p.id === productId);
     if(!product) return;
 
+    if(!product.plans[planIndex].keys) product.plans[planIndex].keys = [];
 
-    product.plans.splice(
-        planIndex,
-        1
-    );
+    const newKeys = rawText.split("\n").map(k => k.trim()).filter(k => k.length > 0);
+    product.plans[planIndex].keys.push(...newKeys);
 
-
+    input.value = "";
     saveData();
-
     render();
-
+    alert(`${newKeys.length} Key(s) added!`);
 }
 
-
-/* =========================================
-   DELETE PRODUCT
-========================================= */
+function deletePlan(productId, planIndex){
+    const product = products.find(p => p.id === productId);
+    if(!product) return;
+    product.plans.splice(planIndex, 1);
+    saveData();
+    render();
+}
 
 function deleteProduct(index){
-
-    if(
-        !confirm(
-            "Delete this product?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    products.splice(
-        index,
-        1
-    );
-
-
+    if(!confirm("Delete product?")) return;
+    products.splice(index, 1);
     saveData();
-
     render();
-
 }
 
-
-/* =========================================
-   TOP UP
-========================================= */
-
-function openTopup(){
-
-    document
-    .getElementById(
-        "topupModal"
-    )
-    .classList.add("show");
-
-
-    updateBalance();
-
-}
-
-
-function closeTopup(){
-
-    document
-    .getElementById(
-        "topupModal"
-    )
-    .classList.remove("show");
-
-}
-
+/* TOP UP & USER DATA */
+function openTopup(){ document.getElementById("topupModal").classList.add("show"); updateBalance(); }
+function closeTopup(){ document.getElementById("topupModal").classList.remove("show"); }
 
 function addBalance(){
-
-    const amount =
-    Number(
-        document
-        .getElementById(
-            "topupAmount"
-        )
-        .value
-    );
-
-
-    if(
-        !Number.isFinite(amount) ||
-        amount <= 0
-    ){
-
-        alert(
-            "Enter a valid amount."
-        );
-
-        return;
-
-    }
-
-
+    const amount = Number(document.getElementById("topupAmount").value);
+    if(isNaN(amount) || amount <= 0){ alert("Valid amount enter karo."); return; }
     balance += amount;
-
-
-    history.unshift({
-
-        type:"Top Up",
-
-        amount:amount,
-
-        date:
-        new Date()
-        .toLocaleString()
-
-    });
-
-
+    history.unshift({ type: "Top Up", amount, date: new Date().toLocaleString() });
     saveData();
-
     render();
-
     closeTopup();
-
-
-    alert(
-        "₹"+amount.toFixed(2)+
-        " added successfully!"
-    );
-
+    alert("Balance Added!");
 }
-
-
-/* =========================================
-   MY KEYS
-========================================= */
 
 function renderKeys(){
-
-    const box =
-    document.getElementById(
-        "keysList"
-    );
-
-
+    const box = document.getElementById("keysList");
     if(!box) return;
+    if(!keys.length){ box.innerHTML = `<div class="admin-card" style="color:#8190a8">No purchased keys yet.</div>`; return; }
 
-
-    if(!keys.length){
-
-        box.innerHTML=`
-        <div class="admin-card"
-        style="color:#8190a8">
-
-            No purchased keys yet.
-
-        </div>`;
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-    keys.map(function(key){
-
-        return `
-
+    box.innerHTML = keys.map(k => `
         <div class="admin-card">
-
-            <b>
-                ${escapeHTML(key.product)}
-            </b>
-
-            <br>
-
-            <span style="
-            color:#16ddc1">
-
-                ${escapeHTML(key.plan)}
-
-            </span>
-
-            <br>
-
-            <small style="
-            color:#8190a8">
-
-                ${escapeHTML(key.id)}
-                •
-                ${escapeHTML(key.date)}
-
-            </small>
-
+            <b>${escapeHTML(k.product)}</b><br>
+            <span style="color:#16ddc1">${escapeHTML(k.plan)}</span><br>
+            <small style="color:#8190a8">${escapeHTML(k.id)} • ${escapeHTML(k.date)}</small><br>
+            <button class="copy-btn" onclick="copyToClipboard('${escapeHTML(k.id)}')">📋 Copy Key</button>
         </div>
-
-        `;
-
-    }).join("");
-
+    `).join("");
 }
-
-
-/* =========================================
-   HISTORY
-========================================= */
 
 function renderHistory(){
-
-    const box =
-    document.getElementById(
-        "historyList"
-    );
-
-
+    const box = document.getElementById("historyList");
     if(!box) return;
+    if(!history.length){ box.innerHTML = `<div class="admin-card" style="color:#8190a8">No transactions yet.</div>`; return; }
 
-
-    if(!history.length){
-
-        box.innerHTML=`
-        <div class="admin-card"
-        style="color:#8190a8">
-
-            No transactions yet.
-
-        </div>`;
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-    history.map(function(item){
-
-        return `
-
+    box.innerHTML = history.map(h => `
         <div class="admin-card">
-
-            <b>
-                ${escapeHTML(item.type)}
-            </b>
-
-            ${
-                item.product
-                ?
-                `<br>
-                ${escapeHTML(item.product)}
-                —
-                ${escapeHTML(item.plan)}`
-                :
-                ""
-            }
-
-            <div style="
-            color:#18dfc2;
-            margin-top:6px">
-
-                ₹${Number(item.amount).toFixed(2)}
-
-            </div>
-
-            <small style="
-            color:#8190a8">
-
-                ${escapeHTML(item.date)}
-
-            </small>
-
+            <b>${escapeHTML(h.type)}</b>
+            ${h.product ? `<br>${escapeHTML(h.product)} — ${escapeHTML(h.plan)}` : ""}
+            <div style="color:#18dfc2;margin-top:6px">₹${Number(h.amount).toFixed(2)}</div>
+            <small style="color:#8190a8">${escapeHTML(h.date)}</small>
         </div>
-
-        `;
-
-    }).join("");
-
+    `).join("");
 }
 
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(message){
-
-    alert(message);
-
+function copyToClipboard(text){
+    navigator.clipboard.writeText(text);
+    alert("Key copied to clipboard!");
 }
 
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
+function escapeHTML(str){
+    return String(str ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
-
-
-/* =========================================
-   START
-========================================= */
 
 render();
-
 </script>
 
 </body>
