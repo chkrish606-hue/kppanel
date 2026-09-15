@@ -1,63 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - KP Panel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
-<div class="auth-wrap">
-
-    <div class="auth-card">
-
-        <h1>KP <span style="color:#38bdf8;">PANEL</span></h1>
-
-        <div class="subtitle">
-            Welcome back
+<div class="auth-page">
+    <div class="auth-box">
+        <div class="auth-logo">
+            KP <span>PANEL</span>
         </div>
-
+        <h1>Welcome Back</h1>
+        <p class="auth-subtitle">
+            Login to continue to your account
+        </p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form method="POST">
-
-            <div class="form-group">
-                <label>Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Enter username"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Enter password"
-                    required
-                >
-            </div>
-
-            <div class="form-actions">
-                <button class="btn" type="submit">
-                    Login
-                </button>
-            </div>
-
+            <label>Email Address</label>
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+            <label>Password</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+            <button type="submit" class="btn btn-primary full">
+                Login →
+            </button>
         </form>
-
-        <div class="auth-footer">
+        <p class="switch">
             Don't have an account?
-            <a href="{{ url_for('register') }}">
-                Create Account
-            </a>
-        </div>
-
+            <a href="/register">Create Account</a>
+        </p>
+        <a href="/" class="back-home">← Back to Home</a>
     </div>
-
 </div>
-
 </body>
 </html>
