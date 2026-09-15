@@ -1,96 +1,73 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account - KP Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-{% block content %}
+<body>
 
-<div class="auth-container">
+<div class="auth-wrap">
 
-    <div class="auth-box">
+    <div class="auth-card">
 
-        <div class="auth-logo">
-            KP PANEL
+        <h1>Create <span style="color:#38bdf8;">Account</span></h1>
+
+        <div class="subtitle">
+            Join KP Panel today
         </div>
-
-        <div class="auth-subtitle">
-            CREATE ACCOUNT
-        </div>
-
-        <p class="auth-description">
-            Create your KP Panel account.
-        </p>
-
 
         <form method="POST">
 
-            <label>
-                Username
-            </label>
+            <div class="form-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Choose username"
+                    required
+                >
+            </div>
 
-            <input
-                type="text"
-                name="username"
-                placeholder="Enter username"
-                required
-            >
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create password"
+                    required
+                >
+            </div>
 
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm password"
+                    required
+                >
+            </div>
 
-            <label>
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                required
-            >
-
-
-            <label>
-                Password
-            </label>
-
-            <input
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                required
-            >
-
-
-            <label>
-                Confirm Password
-            </label>
-
-            <input
-                type="password"
-                name="confirm"
-                placeholder="Confirm password"
-                required
-            >
-
-
-            <button
-                type="submit"
-                class="main-button"
-            >
-                REGISTER NOW
-            </button>
+            <div class="form-actions">
+                <button class="btn" type="submit">
+                    Create Account
+                </button>
+            </div>
 
         </form>
 
-
         <div class="auth-footer">
-
-            Already Member?
-
-            <a href="/login">
-                Login Now
+            Already have an account?
+            <a href="{{ url_for('login') }}">
+                Login
             </a>
-
         </div>
 
     </div>
 
 </div>
 
-{% endblock %}
+</body>
+</html>
