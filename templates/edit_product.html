@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product - KP Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="container">
+
+<div class="page-title">
+    <h1>Edit Product</h1>
+</div>
+
+<div class="card">
+
+<form method="POST">
+
+<div class="admin-form">
+
+<div class="form-group">
+<label>Product Name</label>
+<input
+    name="name"
+    value="{{ product['name'] }}"
+    required
+>
+</div>
+
+<div class="form-group">
+<label>Category</label>
+<select name="category">
+    <option value="iPhone" {% if product['category']=='iPhone' %}selected{% endif %}>iPhone</option>
+    <option value="Android" {% if product['category']=='Android' %}selected{% endif %}>Android</option>
+    <option value="PC" {% if product['category']=='PC' %}selected{% endif %}>PC</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Customer Price</label>
+<input
+    type="number"
+    step="0.01"
+    name="customer_price"
+    value="{{ product['customer_price'] }}"
+>
+</div>
+
+<div class="form-group">
+<label>Reseller Price</label>
+<input
+    type="number"
+    step="0.01"
+    name="reseller_price"
+    value="{{ product['reseller_price'] }}"
+>
+</div>
+
+<div class="form-group full">
+<label>Description</label>
+<textarea name="description">{{ product['description'] }}</textarea>
+</div>
+
+<div class="form-group">
+<label>Video URL</label>
+<input
+    name="video_url"
+    value="{{ product['video_url'] }}"
+    placeholder="https://..."
+>
+</div>
+
+<div class="form-group">
+<label>Telegram Update URL</label>
+<input
+    name="update_url"
+    value="{{ product['update_url'] }}"
+    placeholder="https://t.me/..."
+>
+</div>
+
+<div class="form-group">
+<label>Payment Mode</label>
+<select name="payment_mode">
+    <option value="global" {% if product['payment_mode']=='global' %}selected{% endif %}>
+        Global Payment
+    </option>
+    <option value="custom" {% if product['payment_mode']=='custom' %}selected{% endif %}>
+        Custom Payment
+    </option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Custom Payment URL</label>
+<input
+    name="custom_payment_url"
+    value="{{ product['custom_payment_url'] }}"
+>
+</div>
+
+<div class="form-group full">
+<label>
+<input
+    type="checkbox"
+    name="active"
+    {% if product['active'] %}checked{% endif %}
+>
+ Product Active
+</label>
+</div>
+
+</div>
+
+<button class="btn" type="submit">
+    Save Changes
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
