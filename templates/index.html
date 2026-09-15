@@ -1,42 +1,276 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>KP Panel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KP PANEL</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<nav class="navbar">
-    <div class="container nav-inner">
-        <div class="logo">KP <span>PANEL</span></div>
+<header>
+  <div class="nav">
+    <div class="logo">♛ <b>KP</b> PANEL</div>
 
-        <div class="nav-links">
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('register') }}" class="btn">Create Account</a>
-        </div>
-    </div>
-</nav>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#how">How It Works</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="top-login" onclick="openLogin()">Login</button>
+  </div>
+</header>
+
+<main id="home">
+
+<div class="wrap">
 
 <section class="hero">
-    <div class="container">
-        <h1>Welcome to <span>KP Panel</span></h1>
 
-        <p>
-            Premium digital panel store with a fast,
-            simple and secure purchasing experience.
-        </p>
+<div class="left">
 
-        <a href="{{ url_for('login') }}" class="btn">
-            Login to Panel
-        </a>
+  <div class="badge">🟢 Trusted • Fast • Secure</div>
 
-        <a href="{{ url_for('register') }}" class="btn btn-secondary">
-            Create Account
-        </a>
-    </div>
+  <h1><span>KP</span> PANEL</h1>
+
+  <h2>
+    Your Trusted Source for
+    <em>Phone & Digital Keys</em>
+  </h2>
+
+  <p>
+    Get premium phone keys, activation codes and digital products
+    at competitive prices. Fast delivery, secure payments and support.
+  </p>
+
+  <div class="actions">
+    <button class="primary"
+      onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      Browse Products →
+    </button>
+
+    <button class="secondary"
+      onclick="document.getElementById('support').scrollIntoView({behavior:'smooth'})">
+      Contact Support
+    </button>
+  </div>
+
+  <div class="visual">
+    <div class="phone"></div>
+    <div class="phone phone2"></div>
+
+    <div class="tag tag1">🍎 iPhone Keys</div>
+    <div class="tag tag2">🤖 Android Keys</div>
+    <div class="tag tag3">▣ PC Keys</div>
+  </div>
+
+</div>
+
+
+<aside class="login-card" id="loginCard">
+
+  <div class="login-logo">
+    <span>♛ KP</span> PANEL
+  </div>
+
+  <h2>Login to Your Account</h2>
+
+  <p class="sub">
+    Access your orders, wallet and more.
+  </p>
+
+  <form onsubmit="login(event)">
+
+    <input
+      id="username"
+      type="text"
+      placeholder="Username / Email"
+      required
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      required
+    >
+
+    <button class="primary full">
+      Login
+    </button>
+
+  </form>
+
+  <div class="or">
+    <span>OR</span>
+  </div>
+
+  <button class="google" onclick="googleLogin()">
+    <strong>G</strong> Login with Google
+  </button>
+
+  <p class="register">
+    Don't have an account?
+    <a onclick="registerUser()">Register Now</a>
+  </p>
+
+  <div class="safe">
+    🛡️ <b>Your data is safe with us</b>
+    <br>
+    <small>
+      We use secure practices to protect your information.
+    </small>
+  </div>
+
+</aside>
+
 </section>
+
+
+<section class="cards" id="shop">
+
+  <div class="card">
+    <h3>🍎 iPhone</h3>
+    <p>Reliable & tested phone keys</p>
+    <button onclick="buy('iPhone')">
+      Shop Now →
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>🤖 Android</h3>
+    <p>Top brands & models</p>
+    <button onclick="buy('Android')">
+      Shop Now →
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>▣ PC</h3>
+    <p>Windows & software keys</p>
+    <button onclick="buy('PC')">
+      Shop Now →
+    </button>
+  </div>
+
+</section>
+
+
+<section class="info" id="how">
+  <h2>How It Works</h2>
+  <p>
+    Register → Add Balance → Select Product → Receive Key
+  </p>
+</section>
+
+
+<section class="info" id="support">
+  <h2>Support</h2>
+  <p>
+    Add your support Telegram/contact here.
+  </p>
+</section>
+
+
+<section class="info" id="contact">
+  <h2>Contact</h2>
+  <p>
+    Add your business contact details here.
+  </p>
+</section>
+
+</div>
+
+</main>
+
+
+<footer>
+  © 2026 KP PANEL • Keys Today • Freedom Tomorrow
+</footer>
+
+
+<script>
+
+const GOOGLE_CLIENT_ID =
+"YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+
+
+function openLogin(){
+
+  document
+    .getElementById("loginCard")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+function login(e){
+
+  e.preventDefault();
+
+  alert(
+    "Login button working. Real authentication ke liye backend/database connect karna hoga."
+  );
+
+}
+
+
+function registerUser(){
+
+  alert(
+    "Register button working. Registration backend baad mein connect kiya ja sakta hai."
+  );
+
+}
+
+
+function buy(name){
+
+  alert(
+    name + " selected. Real order/payment ke liye backend connect karein."
+  );
+
+}
+
+
+function googleLogin(){
+
+  if(GOOGLE_CLIENT_ID.startsWith("YOUR_")){
+
+    alert(
+      "Google Login ready hai. GOOGLE_CLIENT_ID ko apne Google OAuth Client ID se replace karein."
+    );
+
+    return;
+  }
+
+  const redirect =
+    encodeURIComponent(
+      window.location.origin + "/google-callback"
+    );
+
+  const scope =
+    encodeURIComponent("openid email profile");
+
+  window.location.href =
+    "https://accounts.google.com/o/oauth2/v2/auth" +
+    "?client_id=" +
+    encodeURIComponent(GOOGLE_CLIENT_ID) +
+    "&redirect_uri=" +
+    redirect +
+    "&response_type=code" +
+    "&scope=" +
+    scope;
+
+}
+
+</script>
 
 </body>
 </html>
